@@ -1,0 +1,25 @@
+/* Stile per i titoli */
+h2, h5 {
+    font-weight: bold; /* Imposta il grassetto per i titoli */
+    color: #333; /* Colore grigio scuro per migliorare la leggibilità */
+    font-family: 'Arial', sans-serif; /* Font sans-serif moderno */
+}
+
+/* Stile per la classe .pl */
+.pl {
+    padding-left: 2%; /* Spazio a sinistra */
+    align-self: center; /* Centra l'elemento */
+    font-size: 1.2rem; /* Dimensione del testo maggiore */
+    line-height: 1.5; /* Aumenta l'interlinea per una lettura migliore */
+    color: #333; /* Colore grigio scuro */
+    font-family: 'Arial', sans-serif; /* Font sans-serif moderno */
+    text-align: justify; /* Giustifica il testo per una presentazione uniforme */
+}
+
+/* Facoltativo: aggiungere anche uno stile per gli altri paragrafi */
+p {
+    font-size: 1rem; /* Dimensione del font dei paragrafi */
+    color: #333; /* Colore grigio scuro */
+    font-family: 'Arial', sans-serif; /* Font sans-serif moderno */
+    line-height: 1.6; /* Interlinea più larga per migliorare la leggibilità */
+}

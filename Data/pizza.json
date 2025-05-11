@@ -4,69 +4,69 @@
     "description": "Una pizza classica con pomodoro, mozzarella e basilico fresco. La tradizione in una fetta!",
     "ingredients": ["pomodoro", "mozzarella", "basilico"],
     "price": 6.00,
-    "image": "https://vitaitaliantours.com/wp-content/uploads/2016/03/Neapolitan-Pizza-Margherita.jpg"
+    "image": "assets/margherita.jpg"
   },
   {
     "name": "Pizza Wurstel e Patatine",
     "description": "Pizza con base mozzarella, wurstel e patatine... un classico intramontabile per grandi e piccini.",
     "ingredients": ["mozzarella", "wurstel", "patatine"],
     "price": 7.00,
-    "image": "https://www.scattidigusto.it/wp-content/uploads/2015/11/pizza-wurstel-con-patatine.jpg"
+    "image": "assets/wurstel.jpg"
   },
   {
     "name": "Pizza Quattro Formaggi",
     "description": "Una pizza ricca con mozzarella, gorgonzola, parmigiano e fontina. Il sogno dei formaggi!",
     "ingredients": ["mozzarella", "gorgonzola", "parmigiano", "fontina"],
     "price": 7.50,
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.lucianopignataro.it%2Fwp-content%2Fuploads%2F2020%2F10%2FLa-Sei-Formaggi-di-Angelo-Pezzella-573x430.jpg"
+    "image": "assets/4formaggi.jpg"
   },
   {
     "name": "Pizza Mortazza",
     "description": "Con mortadella, pistacchio di Bronte e mozzarella, una pizza per i veri buongustai.",
     "ingredients": ["mortadella", "pistacchio di Bronte", "mozzarella"],
     "price": 8.00,
-    "image": "https://www.pisti.it/wp-content/uploads/2022/06/Schermata-2022-06-16-alle-11.10.00-700x525.png"
+    "image": "assets/mortazza.png"
   },
   {
     "name": "Pizza Vegetariana",
     "description": "Pizza con verdure fresche, pomodoro, mozzarella e una spolverata di origano per un piatto sano e saporito.",
     "ingredients": ["verdure", "pomodoro", "mozzarella", "origano"],
     "price": 7.00,
-    "image": "https://hazlovegan.com/wp-content/uploads/2021/01/pizza-napoletana-vegana-3.jpg"
+    "image": "assets/vegetariana.jpg"
   },
   {
     "name": "Pizza Crocchè",
     "description": "Pizza con prosciutto cotto e crocche di patate freschi. Un classico che non passa mai di moda.",
     "ingredients": ["prosciutto cotto", "crocche di patate"],
     "price": 7.50,
-    "image": "https://www.natarantella.it/images/PizzaCrocch%C3%A8_%20(FILEminimizer).jpg"
+    "image": "assets/crocche.jpg"
   },
   {
     "name": "Pizza Bufala",
     "description": "Una pizza fresca con mozzarella di bufala, pomodorini e basilico, per un gusto leggero e gustoso.",
     "ingredients": ["mozzarella di bufala", "pomodorini", "basilico"],
     "price": 8.50,
-    "image": "https://www.lucianopignataro.it/wp-content/uploads/2023/03/Bufalina-al-filetto-di-pomodoro-Libros-Cool-scaled.webp"
+    "image": "assets/bufala.png"
   },
   {
     "name": "Pizza Diavola",
     "description": "Pomodoro, mozzarella e salame piccante per chi ama i sapori forti!",
     "ingredients": ["pomodoro", "mozzarella", "salame piccante"],
     "price": 7.50,
-    "image": "https://www.lucianopignataro.it/wp-content/uploads/2023/02/Elementi-Pizzeria-Diavola-480x480.png"
+    "image": "assets/diavola.png"
   },
   {
     "name": "Pizza Capricciosa",
     "description": "Pomodoro, mozzarella, prosciutto, carciofi, olive e funghi per un'esplosione di gusto.",
     "ingredients": ["pomodoro", "mozzarella", "prosciutto", "carciofi", "olive", "funghi"],
     "price": 8.00,
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmetropolis.ba%2Fwp-content%2Fuploads%2F2023%2F03%2FCJA_9499_1920x1291.jpg"
+    "image": "assets/capricciosa.png"
   },
   {
     "name": "Pizza Fritta Classica",
     "description": "Mozzarella, cicoli, provola di napoli e ricotta: semplice, gustosa e irresistibile.",
     "ingredients": ["mozzarella", "cicoli", "provola di Napoli", "ricotta"],
     "price": 7.00,
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.I3nKl8esGCKg4ZgIg3YBcwHaE7%26cb%3Diwc1%26pid%3DApi"
+    "image": "assets/fritta.png"
   }
 ]

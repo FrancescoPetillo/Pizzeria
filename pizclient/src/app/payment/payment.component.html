@@ -1,71 +1,39 @@
-<div class="container py-5">
-  <div class="row bg-light rounded shadow-sm">
-    <!-- Immagine -->
-    <div class="col-md-6 rounded-left d-flex justify-content-center align-items-center">
-      <img class="img-fluid rounded-3 shadow-lg" src="assets/PizzeriaLogo.png" alt="Pizza" style="max-width: 80%; margin-left: 15px;">
-    </div>
-    <!-- Testo -->
-    <div class="col-md-6 rounded-right d-flex flex-column align-items-center justify-content-center p-4">
-      <h1 class="text-center text-success font-weight-bold p-3 mb-3 border-bottom">Grazie per averci scelto!</h1>
-      <h4 class="text-center text-dark">Procedi al pagamento e avrai la tua pizza in 15 minuti, direttamente a casa tua!</h4>
-    </div>
+<form id="paymentForm" class="border p-4 bg-white shadow rounded" novalidate>
+  <!-- Dati utente -->
+  <div class="mb-3">
+    <label for="fullName" class="form-label">Nome completo</label>
+    <input type="text" class="form-control" id="fullName" required minlength="3">
+    <div class="invalid-feedback">Inserisci un nome valido.</div>
   </div>
-</div>
 
-
-
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Pagamento Sicuro</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="bg-light">
- 
-<div class="container mt-5">
-  <h2 class="text-center mb-4">Pagamento Sicuro</h2>
-  <form id="paymentForm" class="border p-4 bg-white shadow rounded" novalidate>
- 
-    <div class="mb-3">
-      <label for="fullName" class="form-label">Nome completo</label>
-      <input type="text" class="form-control" id="fullName" required minlength="3">
-      <div class="invalid-feedback">Inserisci un nome valido.</div>
-    </div>
- 
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" class="form-control" id="email" required>
-      <div class="invalid-feedback">Inserisci un'email valida.</div>
-    </div>
- 
-    <div class="mb-3">
-      <label for="address" class="form-label">Indirizzo di spedizione</label>
-      <input type="text" class="form-control" id="address" required>
-      <div class="invalid-feedback">Inserisci un indirizzo valido.</div>
-    </div>
- 
-    <div class="mb-3">
-      <label for="card" class="form-label">Numero Carta (solo simulazione)</label>
-      <input type="password" class="form-control" id="card" required pattern="\\d{16}" maxlength="16">
-      <div class="invalid-feedback">Inserisci un numero di carta valido (16 cifre).</div>
-    </div>
- 
-    <button type="submit" class="btn btn-success w-100">Paga Ora</button>
-  </form>
- 
-  <div id="successMsg" class="alert alert-success mt-4 d-none">
-    Pagamento effettuato con successo! L'ordine è stato ricevuto.
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" required>
+    <div class="invalid-feedback">Inserisci un'email valida.</div>
   </div>
-</div>
- 
+
+  <div class="mb-3">
+    <label for="address" class="form-label">Indirizzo di spedizione</label>
+    <input type="text" class="form-control" id="address" required>
+    <div class="invalid-feedback">Inserisci un indirizzo valido.</div>
+  </div>
+
+  <div class="mb-3">
+    <label for="card" class="form-label">Numero Carta</label>
+    <input type="password" class="form-control" id="card" required pattern="\\d{16}" maxlength="16">
+    <div class="invalid-feedback">Inserisci un numero di carta valido (16 cifre).</div>
+  </div>
+
+  <button type="submit" class="btn btn-success w-100">Paga Ora</button>
+</form>
+
 <script>
   const form = document.getElementById('paymentForm');
   const successMsg = document.getElementById('successMsg');
- 
+
   form.addEventListener('submit', function (event) {
     event.preventDefault();
+
     if (form.checkValidity()) {
       const payload = {
         name: document.getElementById('fullName').value,
@@ -73,7 +41,7 @@
         address: document.getElementById('address').value,
         card: document.getElementById('card').value
       };
- 
+
       fetch('http://localhost:3000/checkout', {
         method: 'POST',
         headers: {
@@ -83,7 +51,6 @@
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
         successMsg.classList.remove('d-none');
         form.reset();
         form.classList.remove('was-validated');
@@ -97,7 +64,3 @@
     }
   });
 </script>
- 
-</body>
-</html>
-

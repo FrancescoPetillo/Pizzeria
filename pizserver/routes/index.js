@@ -3,9 +3,6 @@ var express = require('express');
 var router = express.Router();
 let mongoose = require('mongoose');
 const { check, validationResult } = require('express-validator');
-const rateLimit = require('express-rate-limit');
-const helmet = require('helmet');
-const cors = require('cors');
 
 // Schema di MongoDB
 let mySchema = mongoose.Schema;
@@ -27,28 +24,9 @@ let topSchema = new mySchema({
   tname: String
 });
 
-// Connessione a MongoDB
-mongoose.connect('mongodb://localhost:27017/pizzeria', (err) => {
-  if (err) throw err;
-  else {
-    console.log('Connected to mongodb via mongoose');
-  }
-});
-
 // Modelli Mongoose
 let pizza = mongoose.model('pizza', pizSchema, 'pizza');
 let toppingsandingredients = mongoose.model('toppingsandingredients', topSchema);
-
-// Middleware
-router.use(cors());
-router.use(helmet());
-router.use(express.json());
-
-// Rate limit (max 5 richieste al minuto per il checkout)
-router.use('/checkout', rateLimit({
-  windowMs: 60 * 1000, // 1 minuto
-  max: 5               // Limite di 5 richieste
-}));
 
 // Rotte
 // Pagina home
@@ -92,7 +70,7 @@ router.post('/checkout', [
   check('name').isLength({ min: 3 }).trim().escape(),
   check('email').isEmail().normalizeEmail(),
   check('address').notEmpty().trim().escape(),
-  check('card').isLength({ min: 16, max: 16 }).isNumeric()
+  check('card').isLength({ min: 4, max: 16 }).isNumeric()
 ], (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

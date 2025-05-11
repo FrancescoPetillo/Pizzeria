@@ -1,44 +1,54 @@
 <div class="container-fluid">
-    <div class="row">
+    <!-- Titolo della sezione -->
+    <div class="row text-center mb-1">
         <div class="col">
             <hr>
         </div>
         <div class="col-auto">
-            <h4 class="text-capitalize text-center">build</h4>
+            <h2 class="text-capitalize text-dark">Sfiziosità <span role="img" aria-label="snack">🍕</span></h2>
         </div>
         <div class="col">
             <hr>
         </div>
     </div>
-    <p class="text-center">Make your own Pizza by choosing Toppings and Ingredients from Below</p>
-    <table class=" table table-striped border border-2">
-        <thead>
-        </thead>
-        <tbody>
-            <tr *ngFor="let t of toppings">
-                <td> <img [src]="t.image" width="100px" height="100px"></td>
-                <td><b>{{t.tname}} &nbsp; &#8377;{{t.price}}</b></td>
-                <td>
-                    <div class="form-check">
-                        <input type="checkbox"  autocomplete="off" [checked]="flags[t.id]"  class="form-check-input" (change)="checkUncheck($event,t)" >
-                        <label class="form-check-label">
-                            Add
-                        </label>
+
+    <!-- Sezione sfizi orizzontale -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div class="col" *ngFor="let t of toppings">
+            <div class="card">
+                <div class="row g-0">
+                    <!-- Colonna Immagine -->
+                    <div class="col-md-4">
+                        <img [src]="t.image" class="img-fluid rounded-start" alt="{{t.tname}}">
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="row">
-        <div class="col-4">
-            <button type="button" class="btn btn-dark text-warning" (click)="getTotal()">Confirm Selections</button>
-        </div>
-        <div class="col-4"></div>
-        <div class="col-4">
-            <b>
-                <h6 class="float-end">Total Price:&#8377;{{toppingtotal}}</h6>
-            </b>
+
+                    <!-- Colonna Dettagli -->
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{t.tname}}</h5>
+                            <p class="card-text text-muted">Prezzo: &#8364;{{t.price}}</p>
+                            <p class="card-text" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{t.description}}</p>
+                            <button type="button" class="btn btn-warning w-100" (click)="addToppingToCart(t)">
+                                <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Descrizione finale sotto gli sfizi -->
+    <p class="text-center mt-4" style="font-size: 1.1rem; font-weight: 600;">
+        I nostri migliori antipastini per aprire al meglio la tua esperienza gastronomica! 🧀🍤<br>Perfetti per ogni occasione, uniti alla bontà della nostra pizza! 🍽️
+    </p>
+
+    <!-- Sezione per totale -->
+    <div class="row mt-4">
+        <div class="col-12 text-center mt-2">
+            <b>
+                <h6 class="float-end">Totale: &#8364;{{toppingtotal}}</h6>
+            </b>
+        </div>
+    </div>
 </div>

@@ -14,13 +14,13 @@
             <a class="nav-link" routerLink="/order">Ordina la tua Pizza</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/build">Personalizza la tua Pizza</a>
+            <a class="nav-link" routerLink="/build">Aggiungi uno Sfizio</a>
           </li>
         </ul>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li>
-          <button type="button" class="btn btn-warning btn-sm  text-nowrap " routerLink="/cart">
+          <button type="button" class="btn btn-warning btn-sm text-nowrap" routerLink="/cart">
             <i class="fa fa-shopping-cart"></i> Carrello 
             <span class="badge rounded-pill bg-light text-dark">{{count}}</span>
           </button>
@@ -28,12 +28,20 @@
       </ul>
     </div>
   </nav>
+
+  <!-- Sezione Assistenza visibile in ogni pagina -->
+  <div class="bg-info text-white text-center py-2">
+    <p class="mb-0">
+      <strong>Aperti</strong> dal martedì alla domenica | 
+      <strong>Pranzo:</strong> 12:00 - 16:00 &nbsp;&nbsp;&nbsp; 
+      <strong>Sera:</strong> 19:00 - 24:00 &nbsp;&nbsp;&nbsp; 
+      <strong>Assistenza clienti:</strong> 081 511 5678
+    </p>
+  </div>
+
+  <!-- Contenuto dinamico -->
   <div>
     <router-outlet></router-outlet>
   </div>
-  <footer class="text-center text-danger bg-dark p-1 mt-2 rounded">
-  <p class="mt-3 mb-0">&copy; Copyrights 2025 Pizzeria Franvittore. All rights reserved</p>
-  <p class="text-light">Un progetto di Francesco Petillo e Vittorio Basile</p>
-  </footer>
 
-</div>
+  <footer class="text-center text-danger bg-dark p-1 mt-2 rounded">

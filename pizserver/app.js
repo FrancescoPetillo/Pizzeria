@@ -3,9 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors= require('cors');
+const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
+const mongoose = require('mongoose'); // Connessione a MongoDB
+const pizzaRoutes = require('./routes/pizzaRoutes'); 
+
+// Connessione a MongoDB
+const mongoURI = 'mongodb://localhost:27017/pizzeria'; // Modifica con il tuo database
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log('✅ Connesso a MongoDB');
+}).catch(err => {
+  console.error('❌ Errore di connessione a MongoDB:', err);
+});
+
+// Importazione delle rotte
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const orderRoutes = require('./routes/orderRoutes'); // Importa le rotte per gli ordini
 
 var app = express();
 
@@ -17,10 +35,20 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use('/', express.static(path.join(__dirname, 'public/dist/pizclient')));
 app.use(cors());
+app.use(helmet());
+
+// Rate limit: max 5 richieste al minuto sulla rotta /checkout
+app.use('/checkout', rateLimit({
+  windowMs: 60 * 1000,
+  max: 5
+}));
+
+// Rotte
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/api/orders', orderRoutes);  // Aggiungi le rotte per gli ordini
+app.use('/api/pizzas', pizzaRoutes); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -29,11 +57,8 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });

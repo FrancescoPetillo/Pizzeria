@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { PizzaService } from '../pizza.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,52 +10,89 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
   cart = [];
-  total:number;
-  toppingtotal:number;
+  toppingsCart = []; // <-- Sfizi separati
+  total: number;
+  toppingtotal: number;
 
-  constructor(private cartservice: CartService,private router:Router)
-  {
-
-  }
+  constructor(
+    private cartservice: CartService,
+    private router: Router,
+    private pizzaService: PizzaService
+  ) {}
 
   ngOnInit(): void {
-    this.cart = this.cartservice.cart;
-    this.total=this.cartservice.total;
-    this.toppingtotal=this.cartservice.toppingtotal;
+    this.cart = this.cartservice.cart.filter(p => !p.isTopping); // Solo pizze
+    this.toppingsCart = this.cartservice.cart.filter(p => p.isTopping); // Solo sfizi
+    this.total = this.cartservice.total;
+    this.toppingtotal = this.cartservice.toppingtotal;
+
+    this.loadPizzaImages();
+    this.loadToppingImages();
   }
 
-  remove(pizza) {
-    this.cartservice.removeFromCart(pizza);
-    this.cartservice.getTotal();
-    console.log("remove() called");
-    this.total=this.cartservice.total;
-    
+  loadPizzaImages(): void {
+    this.cart.forEach((pizza) => {
+      this.pizzaService.getPizzaById(pizza.id).subscribe(
+        (pizzaData) => {
+          pizza.image = pizzaData.image;
+        },
+        (error) => {
+          console.error(`Errore immagine pizza ${pizza.id}:`, error);
+        }
+      );
+    });
   }
-  onPlus(pizza){
-    this.cartservice.increse(pizza);
-    this.cartservice.getTotal();
-    console.log("increse() called");
-    this.total=this.cartservice.total;
+
+  loadToppingImages(): void {
+    this.toppingsCart.forEach((topping) => {
+      this.pizzaService.getPizzaById(topping.id).subscribe(
+        (toppingData) => {
+          topping.image = toppingData.image;
+        },
+        (error) => {
+          console.error(`Errore immagine topping ${topping.id}:`, error);
+        }
+      );
+    });
   }
-  onMinus(pizza){
-    this.cartservice.decrese(pizza);
-    this.cartservice.getTotal();
-    console.log("decrese() called");
-    this.total=this.cartservice.total;
+
+  remove(item): void {
+    this.cartservice.removeFromCart(item);
+    this.refreshCart();
   }
-  clear(){
+
+  onPlus(item): void {
+    this.cartservice.increse(item);
+    this.refreshCart();
+  }
+
+  onMinus(item): void {
+    this.cartservice.decrese(item);
+    this.refreshCart();
+  }
+
+  refreshCart(): void {
+    this.cart = this.cartservice.cart.filter(p => !p.isTopping);
+    this.toppingsCart = this.cartservice.cart.filter(p => p.isTopping);
+    this.total = this.cartservice.total;
+    this.toppingtotal = this.cartservice.toppingtotal;
+  }
+
+  clear(): void {
     this.cartservice.clearCart();
-    this.cart = this.cartservice.cart;
-    this.cartservice.getTotal();
-    this.cartservice.getToppingsTotal();
-    this.total=this.cartservice.total;
-    this.toppingtotal=this.cartservice.toppingtotal;
+    this.cart = [];
+    this.toppingsCart = [];
+    this.updateTotals();
   }
 
-  paylo(){
+  paylo(): void {
     this.clear();
     this.router.navigateByUrl('/pay');
   }
+
+  updateTotals(): void {
+    this.cartservice.getTotal();
+    this.total = this.cartservice.total;
+    this.toppingtotal = this.cartservice.toppingtotal;
+  }
 }
-
-

@@ -1,0 +1,67 @@
+.container-pizza {
+  background-color: #f8f9fa;
+  padding: 40px 20px;
+}
+
+.order-title {
+  color: #d9534f;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.order-subtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 1.2em;
+  color: #555;
+}
+
+.pizza-card {
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pizza-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.pizza-img {
+  border-radius: 15px;
+  object-fit: cover;
+  height: 200px;
+}
+
+.add-to-cart-btn {
+  background-color: #f0ad4e;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #ec971f;
+}
+
+.card-title, .card-text {
+  text-align: center;
+}
+
+.fs-3 {
+  font-size: 1.5em;
+  color: #333;
+}
+
+.fs-4 {
+  font-size: 1.2em;
+  color: #444;
+}
+
+.fs-5 {
+  font-size: 1em;
+  color: #666;
+}

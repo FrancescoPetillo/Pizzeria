@@ -23,8 +23,8 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cart = this.cartservice.cart.filter(p => !p.isTopping); // Solo pizze
     this.toppingsCart = this.cartservice.cart.filter(p => p.isTopping); // Solo sfizi
-    this.total = this.cartservice.total;
-    this.toppingtotal = this.cartservice.toppingtotal;
+    this.total = this.cartservice.getTotal();
+    this.toppingtotal = this.cartservice.getToppingsTotal();
 
     this.loadPizzaImages();
     this.loadToppingImages();
@@ -85,14 +85,13 @@ export class CartComponent implements OnInit {
     this.updateTotals();
   }
 
-  paylo(): void {
-    this.clear();
-    this.router.navigateByUrl('/pay');
-  }
+paylo(): void {
+  this.router.navigateByUrl('/pay');  // Solo navigazione senza svuotare il carrello
+}
+
 
   updateTotals(): void {
-    this.cartservice.getTotal();
-    this.total = this.cartservice.total;
-    this.toppingtotal = this.cartservice.toppingtotal;
-  }
+  this.total = this.cartservice.getTotal();
+  this.toppingtotal = this.cartservice.getToppingsTotal();
+}
 }

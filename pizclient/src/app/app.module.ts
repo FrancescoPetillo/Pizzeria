@@ -9,6 +9,7 @@ import { BuildurpizzaComponent } from './buildurpizza/buildurpizza.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule
   ],
   providers: [],

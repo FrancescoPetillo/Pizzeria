@@ -1,66 +1,39 @@
-<form id="paymentForm" class="border p-4 bg-white shadow rounded" novalidate>
-  <!-- Dati utente -->
+<form (ngSubmit)="onSubmit()" #paymentForm="ngForm" class="border p-4 bg-white shadow rounded" novalidate>
+  <!-- Nome completo -->
   <div class="mb-3">
     <label for="fullName" class="form-label">Nome completo</label>
-    <input type="text" class="form-control" id="fullName" required minlength="3">
-    <div class="invalid-feedback">Inserisci un nome valido.</div>
+    <input type="text" class="form-control" id="fullName" name="name" [(ngModel)]="formData.name" required minlength="3">
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.name">Inserisci un nome valido.</div>
   </div>
 
+  <!-- Email -->
   <div class="mb-3">
     <label for="email" class="form-label">Email</label>
-    <input type="email" class="form-control" id="email" required>
-    <div class="invalid-feedback">Inserisci un'email valida.</div>
+    <input type="email" class="form-control" id="email" name="email" [(ngModel)]="formData.email" required>
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.email">Inserisci un'email valida.</div>
   </div>
 
+  <!-- Indirizzo -->
   <div class="mb-3">
     <label for="address" class="form-label">Indirizzo di spedizione</label>
-    <input type="text" class="form-control" id="address" required>
-    <div class="invalid-feedback">Inserisci un indirizzo valido.</div>
+    <input type="text" class="form-control" id="address" name="address" [(ngModel)]="formData.address" required>
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.address">Inserisci un indirizzo valido.</div>
   </div>
 
+  <!-- Carta -->
   <div class="mb-3">
     <label for="card" class="form-label">Numero Carta</label>
-    <input type="password" class="form-control" id="card" required pattern="\\d{16}" maxlength="16">
-    <div class="invalid-feedback">Inserisci un numero di carta valido (16 cifre).</div>
+    <input type="password" class="form-control" id="card" name="card" [(ngModel)]="formData.card" required pattern="\\d{16}" maxlength="16">
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.card">Inserisci un numero di carta valido (16 cifre).</div>
   </div>
 
+  <!-- Bottone -->
   <button type="submit" class="btn btn-success w-100">Paga Ora</button>
 </form>
 
-<script>
-  const form = document.getElementById('paymentForm');
-  const successMsg = document.getElementById('successMsg');
-
-  form.addEventListener('submit', function (event) {
-    event.preventDefault();
-
-    if (form.checkValidity()) {
-      const payload = {
-        name: document.getElementById('fullName').value,
-        email: document.getElementById('email').value,
-        address: document.getElementById('address').value,
-        card: document.getElementById('card').value
-      };
-
-      fetch('http://localhost:3000/checkout', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      })
-      .then(res => res.json())
-      .then(data => {
-        successMsg.classList.remove('d-none');
-        form.reset();
-        form.classList.remove('was-validated');
-      })
-      .catch(err => {
-        console.error('Errore nel pagamento:', err);
-        alert("Errore durante il pagamento. Riprova più tardi.");
-      });
-    } else {
-      form.classList.add('was-validated');
-    }
-  });
-</script>
+<!-- Messaggio di successo -->
+<div *ngIf="success" class="alert alert-success mt-3 fw-bold fs-5">
+  ✅ Pagamento completato con successo!<br>
+  📦 Il tuo ordine sarà consegnato <strong>{{ formData.address }}</strong> entro <strong>15 minuti</strong>.<br>
+  🍕 Grazie per aver ordinato da noi!
+</div>

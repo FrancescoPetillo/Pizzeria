@@ -6,11 +6,11 @@ var logger = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const mongoose = require('mongoose'); // Connessione a MongoDB
-const pizzaRoutes = require('./routes/pizzaRoutes'); 
+const mongoose = require('mongoose');
+const pizzaRoutes = require('./routes/pizzaRoutes');
 
-// Connessione a MongoDB
-const mongoURI = 'mongodb://localhost:27017/pizzeria'; // Modifica con il tuo database
+// Connessione a MongoDB usando variabile d'ambiente
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/pizzeria'; // Backup locale
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -23,7 +23,7 @@ mongoose.connect(mongoURI, {
 // Importazione delle rotte
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const orderRoutes = require('./routes/orderRoutes'); // Importa le rotte per gli ordini
+const orderRoutes = require('./routes/orderRoutes');
 
 var app = express();
 
@@ -38,6 +38,9 @@ app.use(cookieParser());
 app.use(cors());
 app.use(helmet());
 
+// Servire i file statici del frontend (Angular)
+app.use(express.static(path.join(__dirname, 'dist', 'pizclient')));
+
 // Rate limit: max 5 richieste al minuto sulla rotta /checkout
 app.use('/checkout', rateLimit({
   windowMs: 60 * 1000,
@@ -47,8 +50,13 @@ app.use('/checkout', rateLimit({
 // Rotte
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/orders', orderRoutes);  // Aggiungi le rotte per gli ordini
-app.use('/api/pizzas', pizzaRoutes); 
+app.use('/api/orders', orderRoutes);
+app.use('/api/pizzas', pizzaRoutes);
+
+// Catch all route per il frontend, restituire sempre index.html
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'dist', 'pizclient', 'index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -18,6 +18,8 @@ const orderSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+orderSchema.index({ userId: 1 }); // Migliora performance query per utente
+
 const Order = mongoose.model('Order', orderSchema);
 
 module.exports = Order;

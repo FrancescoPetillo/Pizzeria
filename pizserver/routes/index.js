@@ -72,37 +72,34 @@ router.get('/ordini', async (req, res) => {
   }
 });
 
-// ✅ POST /checkout con `card` incluso
+// ✅ POST /checkout con `cardLast4` incluso
 router.post('/checkout', [
   check('name').isLength({ min: 3 }).trim().escape(),
   check('email').isEmail().normalizeEmail(),
   check('address').notEmpty().trim().escape(),
-  check('card').isLength({ min: 4, max: 16 }).isNumeric(),
+  check('cardLast4').isLength({ min: 4, max: 4 }).isNumeric(),
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-	return res.status(400).json({ errors: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
 
-  const { name, email, card, address, prodotti } = req.body;
+  const { name, email, address, prodotti, cardLast4 } = req.body;
 
   try {
-	const nuovoOrdine = new Ordine({
-  	name,
-  	email,
-  	address,
-  	card,                	// ✅ aggiunto qui
-  	prodotti: prodotti || []
-	});
+    const nuovoOrdine = new Ordine({
+      name,
+      email,
+      address,
+      cardLast4, // Salva solo le ultime 4 cifre
+      prodotti: prodotti || []
+    });
 
-	await nuovoOrdine.save();
+    await nuovoOrdine.save();
 
-	console.log('✅ Ordine salvato nel database:', nuovoOrdine);
-
-	res.json({ message: 'Pagamento ricevuto e ordine salvato!' });
+    res.json({ message: 'Pagamento ricevuto e ordine salvato!' });
   } catch (error) {
-	console.error('❌ Errore durante il salvataggio ordine:', error);
-	res.status(500).json({ message: 'Errore nel salvataggio ordine.' });
+    res.status(500).json({ message: 'Errore nel salvataggio ordine.' });
   }
 });
 

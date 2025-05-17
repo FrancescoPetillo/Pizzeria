@@ -1,6 +1,6 @@
 <h1 align="center">Pizzeria | MEAN Web App</h1>
 
-<p> This is a pizza ordering web application that is built with the MEAN stack, which consists of MongoDB, Express, Angular, and Node.js.</p>
+<p> Pizzeria Franvittore.</p>
 
 ## 📝 Table of Contents
 

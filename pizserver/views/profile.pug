@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1 Il tuo profilo
+  p Nome: #{user.name}
+  p Email: #{user.email}
+  form(method="post")
+    label Modifica nome:
+    input(type="text", name="name", value=user.name, required)
+    button(type="submit") Aggiorna
+  br
+  a(href="/auth/logout") Logout

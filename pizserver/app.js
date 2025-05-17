@@ -7,11 +7,12 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose'); // Connessione a MongoDB
-const pizzaRoutes = require('./routes/pizzaRoutes'); 
+const pizzaRoutes = require('./routes/pizzaRoutes');
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 // Connessione a MongoDB
 const mongoURI = 'mongodb://franvittore1926:FrancescoVittorio1926.@127.0.0.1:27017/pizzeria?authSource=pizzeria';
-
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
@@ -28,8 +29,9 @@ mongoose.connect(mongoURI, {
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const orderRoutes = require('./routes/orderRoutes'); // Importa le rotte per gli ordini
+const authRoutes = require('./routes/auth'); // << IMPORT QUI
 
-var app = express();
+var app = express(); // << CREA L'APP QUI
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,7 +50,16 @@ app.use('/checkout', rateLimit({
   max: 5
 }));
 
+app.use(session({
+  secret: 'metti-qui-una-stringa-sicura',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({ mongoUrl: mongoURI }),
+  cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 }
+}));
+
 // Rotte
+app.use('/auth', authRoutes); // << ORA QUI È CORRETTO
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/orders', orderRoutes);  // Aggiungi le rotte per gli ordini

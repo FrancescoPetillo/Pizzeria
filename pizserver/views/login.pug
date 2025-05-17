@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1 Login
+  if error
+    p(style="color:red")= error
+  form(method="post")
+    label Email:
+    input(type="email", name="email", required)
+    br
+    label Password:
+    input(type="password", name="password", required)
+    br
+    button(type="submit") Login
+  a(href="/auth/register") Registrati
+  br
+  a(href="/auth/forgot") Password dimenticata?

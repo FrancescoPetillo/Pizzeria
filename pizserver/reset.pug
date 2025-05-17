@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Reimposta password
+  form(method="post")
+    label Nuova password:
+    input(type="password", name="password", required)
+    button(type="submit") Cambia password

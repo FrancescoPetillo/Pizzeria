@@ -5,26 +5,21 @@ const router = express.Router();
 // Crea un nuovo ordine
 router.post('/', async (req, res) => {
   try {
-    const { nome, email, indirizzo, prodotti, totale, metodoPagamento, card } = req.body;
-
-    // Prendi solo le ultime 4 cifre della carta, se presente
-    const cardLast4 = card ? card.slice(-4) : '';
-
+    const { name, email, address, products, totalAmount, paymentMethod, cardLast4 } = req.body;
     const nuovoOrdine = new Order({
-      nome,
+      name,
       email,
-      indirizzo,
-      prodotti,
-      totale,
-      metodoPagamento,
+      address,
+      products,
+      totalAmount,
+      paymentMethod,
       cardLast4,
-      dataCreazione: new Date()
+      createdAt: new Date()
     });
-
     await nuovoOrdine.save();
     res.status(201).json(nuovoOrdine);
   } catch (err) {
-    res.status(500).json({ message: 'Errore nella creazione dell\'ordine', error: err });
+    res.status(500).json({ message: 'Order creation error', error: err });
   }
 });
 

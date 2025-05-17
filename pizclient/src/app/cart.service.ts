@@ -33,11 +33,12 @@ export class CartService {
   }
 
   addToCart(pizza: any) {
+    console.log('Pizza aggiunta al carrello:', pizza); // <--- AGGIUNGI QUESTA RIGA
     const found = this.cart.find(item => item.id === pizza.id && !item.isTopping);
     if (found) {
       found.qty += 1;
     } else {
-      this.cart.push({ ...pizza, qty: 1, isTopping: false });
+      this.cart.push({ ...pizza, _id: pizza._id, qty: 1, isTopping: false });
     }
     this.saveCart();
     this.cartlength.next(this.getCartItemsCount());

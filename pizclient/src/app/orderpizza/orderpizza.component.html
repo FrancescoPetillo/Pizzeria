@@ -4,154 +4,18 @@
   <p class="order-subtitle fs-4" style="text-align: center;">Scegli tra una varietà di pizze, tutte preparate con ingredienti freschi e genuini. Clicca sulla pizza per aggiungerla al tuo ordine!</p>
    
   <div class="row row-cols-1 row-cols-md-2 g-4">
-     <!-- Pizza 1 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://vitaitaliantours.com/wp-content/uploads/2016/03/Neapolitan-Pizza-Margherita.jpg" class="card-img-top" alt="Pizza Margherita">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Margherita</h5>
-           <p class="card-text fs-5">Una pizza classica con pomodoro, mozzarella e basilico fresco. La tradizione in una fetta!</p>
-           <p class="fs-4">€ 6,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '1', name: 'Pizza Margherita', price: 6.00, image: 'assets/margherita.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 2 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://www.scattidigusto.it/wp-content/uploads/2015/11/pizza-wurstel-con-patatine.jpg" class="card-img-top" alt="Pizza Wurstel e Patatine">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Wurstel e Patatine</h5>
-           <p class="card-text fs-5">Pizza con base mozzarella, wurstel e patatine... un classico intramontabile per grandi e piccini.</p>
-           <p class="fs-4">€ 7,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '2', name: 'Pizza Wurstel e Patatine', price: 7.00, image: 'assets/wurstel.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 3 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.lucianopignataro.it%2Fwp-content%2Fuploads%2F2020%2F10%2FLa-Sei-Formaggi-di-Angelo-Pezzella-573x430.jpg&f=1&nofb=1&ipt=5f342528006e12f0e08a6e36ed70bc380287be59087f9bbd6d4964759d5009ed" class="card-img-top" alt="Pizza Quattro Formaggi">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Quattro Formaggi</h5>
-           <p class="card-text fs-5">Una pizza ricca con mozzarella, gorgonzola, parmigiano e fontina. Il sogno dei formaggi!</p>
-           <p class="fs-4">€ 7,50</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '3', name: 'Pizza Quattro Formaggi', price: 7.50, image: 'assets/4formaggi.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 4 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://www.pisti.it/wp-content/uploads/2022/06/Schermata-2022-06-16-alle-11.10.00-700x525.png" class="card-img-top" alt="Pizza Mortazza">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Mortazza</h5>
-           <p class="card-text fs-5">Con mortadella, pistacchio di Bronte e mozzarella, una pizza per i veri buongustai.</p>
-           <p class="fs-4">€ 8,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '4', name: 'Pizza Mortazza', price: 8.00, image: 'assets/mortazza.png' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 5 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://hazlovegan.com/wp-content/uploads/2021/01/pizza-napoletana-vegana-3.jpg" class="card-img-top" alt="Pizza Vegetariana">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Vegetariana</h5>
-           <p class="card-text fs-5">Pizza con verdure fresche, pomodoro, mozzarella e una spolverata di origano per un piatto sano e saporito.</p>
-           <p class="fs-4">€ 7,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '5', name: 'Pizza Vegetariana', price: 7.00, image: 'assets/vegetariana.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 6 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://www.natarantella.it/images/PizzaCrocch%C3%A8_%20(FILEminimizer).jpg" class="card-img-top" alt="Pizza Crocchè">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Crocchè</h5>
-           <p class="card-text fs-5">Pizza con prosciutto cotto e crocche di patate freschi. Un classico che non passa mai di moda.</p>
-           <p class="fs-4">€ 7,50</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '6', name: 'Pizza Crocchè', price: 7.50, image: 'assets/crocche.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 7 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://www.lucianopignataro.it/wp-content/uploads/2023/03/Bufalina-al-filetto-di-pomodoro-Libros-Cool-scaled.webp" class="card-img-top" alt="Pizza Bufala">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Bufala</h5>
-           <p class="card-text fs-5">Una pizza fresca con mozzarella di bufala, pomodorini e basilico, per un gusto leggero e gustoso.</p>
-           <p class="fs-4">€ 8,50</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '7', name: 'Pizza Bufala', price: 8.50, image: 'assets/bufala.png' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 8 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://www.lucianopignataro.it/wp-content/uploads/2023/02/Elementi-Pizzeria-Diavola-480x480.png" class="card-img-top" alt="Pizza Diavola">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Diavola</h5>
-           <p class="card-text fs-5">Pomodoro, mozzarella e salame piccante per chi ama i sapori forti!</p>
-           <p class="fs-4">€ 7,50</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '8', name: 'Pizza Diavola', price: 7.50, image: 'assets/diavola.png' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 9 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmetropolis.ba%2Fwp-content%2Fuploads%2F2023%2F03%2FCJA_9499_1920x1291.jpg&f=1&nofb=1&ipt=4c67dc27810140ab398b81fb8ee4ffe1f6176411533b0ba351d32d9559e35df4" class="card-img-top" alt="Pizza Capricciosa">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Capricciosa</h5>
-           <p class="card-text fs-5">Pomodoro, mozzarella, prosciutto, carciofi, olive e funghi per un'esplosione di gusto.</p>
-           <p class="fs-4">€ 8,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '9', name: 'Pizza Capricciosa', price: 8.00, image: 'assets/capricciosa.png' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
- 
-     <!-- Pizza 10 -->
-     <div class="col">
-       <div class="card h-100">
-         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.ioviaggio.it%2Fwp-content%2Fuploads%2F2016%2F12%2Fpizza-fritta-1.jpg&f=1&nofb=1&ipt=46ecf621f388893d0117f58413e51781f8db053cb7e0a797e17bc6d37f5f3c8d">
-         <div class="card-body">
-           <h5 class="card-title fs-3">Pizza Fritta Classica</h5>
-           <p class="card-text fs-5">La pizza fritta tipica napoletana, con un cuore morbido di mozzarella, ricotta e prosciutto.</p>
-           <p class="fs-4">€ 7,00</p>
-           <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart({id: '10', name: 'Pizza Fritta', price: 7.00, image: 'assets/fritta.jpg' })">
-             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
-           </button>
-         </div>
-       </div>
-     </div>
+    <div class="col" *ngFor="let pizza of pizzas">
+      <div class="card h-100">
+        <img [src]="pizza.image" class="card-img-top" [alt]="pizza.name">
+        <div class="card-body">
+          <h5 class="card-title fs-3">{{pizza.name}}</h5>
+          <p class="card-text fs-5">{{pizza.description}}</p>
+          <p class="fs-4">€ {{pizza.price}}</p>
+          <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart(pizza)">
+            <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

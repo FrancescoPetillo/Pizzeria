@@ -1,7 +1,5 @@
 <h1 align="center">Pizzeria | MEAN Web App</h1>
 
-<p> Pizzeria Franvittore.</p>
-
 ## 📝 Table of Contents
 
 - [About](#about)
@@ -10,7 +8,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-- Pizzeria è **Applicazione Software** per ordinare pizze e sfizi online.
+- Pizzeria Franvittore is a **Software Application** created to order pizzas.
 - Home page provides an 
 overview of the organization.
 - Users can choose from the existing menu and 

@@ -13,6 +13,9 @@ export class PaymentComponent implements OnInit {
     email: '',
     indirizzo: '',
     card: '',
+    expMonth: '', // separa mese
+    expYear: '',  // separa anno
+    cvv: '',
     prodotti: [],
     totale: 0,
     metodoPagamento: 'simulato'
@@ -58,14 +61,14 @@ export class PaymentComponent implements OnInit {
     if (this.submitted) return;
     this.submitted = true;
     this.success = false;
-    this.syncFormWithCart(); // Aggiorna dati prima di inviare
-    // Validazione lato client avanzata
-    const emailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(this.formData.email);
-    const nameValid = this.sanitizeString(this.formData.nome).length >= 3;
-    const addressValid = this.sanitizeString(this.formData.indirizzo).length > 0;
-    const cardValid = /^[0-9]{4,}$/.test(this.formData.card);
+    this.syncFormWithCart();
+    // Validazione lato client minimale: solo presenza, nessun controllo regex
+    const emailValid = !!this.formData.email;
+    const nameValid = !!this.formData.nome && this.sanitizeString(this.formData.nome).length >= 3;
+    const addressValid = !!this.formData.indirizzo && this.sanitizeString(this.formData.indirizzo).length > 0;
+    const cardValid = !!this.formData.card;
     if (!emailValid || !nameValid || !addressValid || !cardValid) {
-      alert('Compila correttamente tutti i campi!');
+      alert('Compila correttamente tutti i campi obbligatori!');
       this.submitted = false;
       return;
     }
@@ -89,7 +92,9 @@ export class PaymentComponent implements OnInit {
       email: this.formData.email.trim(),
       address: this.sanitizeString(this.formData.indirizzo),
       prodotti: mappedProducts,
-      cardLast4: this.formData.card.slice(-4)
+      cardLast4: this.formData.card.slice(-4),
+      expMonth: this.formData.expMonth,
+      expYear: this.formData.expYear
     };
     this.http.post('http://localhost:3000/checkout', payload).subscribe({
       next: () => {
@@ -100,7 +105,7 @@ export class PaymentComponent implements OnInit {
         // Reset anche il form HTML se presente
         const formElem = document.querySelector('form');
         if (formElem) (formElem as HTMLFormElement).reset();
-        this.formData = { nome: '', email: '', indirizzo: '', card: '', prodotti: [], totale: 0, metodoPagamento: 'simulato' };
+        this.formData = { nome: '', email: '', indirizzo: '', card: '', expMonth: '', expYear: '', cvv: '', prodotti: [], totale: 0, metodoPagamento: 'simulato' };
       },
       error: (err) => {
         if (err && err.error && err.error.message) {

@@ -25,8 +25,8 @@
               <tr class="p-3" *ngFor="let c of cart">
                 <td><img [src]="c.image" class="cart-pizza" alt="{{ c.name }}"></td>
                 <td>
-                  <b class="text-capitalize">{{c.name}}</b> <br>
-                  <span>&#8364;{{c.price}}</span>
+                  <b class="text-capitalize">{{c.name}}</b> <span class="badge bg-warning text-dark ms-2" *ngIf="c.vegetarian">🌱</span> <span class="badge bg-danger ms-2" *ngIf="c.spicy">🌶️</span><br>
+                  <span class="text-secondary">€{{c.price}}</span>
                 </td>
                 <td>
                   <div class="d-flex align-items-center">
@@ -35,20 +35,18 @@
                   </div>
                 </td>
                 <td>
-                  <span>Tot. &#8364;{{c.qty * c.price}}</span>
+                  <span class="fw-bold text-danger">Tot. €{{c.qty * c.price}}</span>
                 </td>
-                <td>
-                  <!-- Rimosso il pulsante di rimozione -->
-                </td>
+                <td></td>
               </tr>
 
 
-              <!-- Sfizi -->
+              <!-- Sfizi modernizzati -->
               <tr class="p-3 bg-light" *ngFor="let t of toppingsCart">
                 <td><img [src]="t.image" class="cart-pizza" alt="{{ t.name }}"></td>
                 <td>
-                  <b class="text-capitalize">{{t.name}}</b> <br>
-                  <span>&#8364;{{t.price}}</span>
+                  <b class="text-capitalize">{{t.name}}</b> <span class="badge bg-info text-dark ms-2">Sfizio</span><br>
+                  <span class="text-secondary">€{{t.price}}</span>
                 </td>
                 <td>
                   <div class="d-flex align-items-center">
@@ -57,11 +55,9 @@
                   </div>
                 </td>
                 <td>
-                  <span>Tot. &#8364;{{t.qty * t.price}}</span>
+                  <span class="fw-bold text-danger">Tot. €{{t.qty * t.price}}</span>
                 </td>
-                <td>
-                  <!-- Rimosso il pulsante di rimozione -->
-                </td>
+                <td></td>
               </tr>
 
 

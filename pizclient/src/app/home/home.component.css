@@ -1,3 +1,141 @@
+/* HERO SECTION: gradiente che parte da #E1E3E9 e sfuma nei colori attuali */
+.hero-section {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 64px 0 32px 0;
+  background: linear-gradient(180deg, #E1E3E9 0%, #fffbe6 15%, #ffe259 50%, #ffa751 100%);
+  border-radius: 0 0 40px 40px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.hero-section::before {
+  display: none;
+}
+.hero-section > * {
+  position: relative;
+  z-index: 2;
+}
+body {
+  background: #fffbe6;
+}
+@media (max-width: 767px) {
+  .hero-section {
+    border-radius: 0 0 18px 18px;
+    padding: 32px 0 16px 0;
+    min-height: 180px;
+  }
+}
+
+.hero-logo {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(255, 167, 81, 0.10);
+  border: 6px solid #ffe259;
+}
+.display-3 {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  color: #d35400;
+  text-shadow: 0 2px 16px rgba(255, 167, 81, 0.12);
+}
+@media (max-width: 767px) {
+  .hero-logo { width: 90px; height: 90px; }
+  .display-3 { font-size: 1.5rem; }
+}
+.hero-desc {
+  font-size: 1.3rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Glassmorphism Card */
+.glass-card {
+  background: rgba(255,255,255,0.7);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 40px 0 rgba(31, 38, 135, 0.18);
+}
+
+.card-img-top {
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.btn-warning {
+  font-size: 1.2rem;
+  font-weight: 600;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(255, 167, 81, 0.15);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-warning:hover {
+  background: #ffb347;
+  color: #fff;
+}
+
+/* Orari di apertura */
+.open-bar {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 30px;
+  box-shadow: 0 2px 12px rgba(255, 167, 81, 0.10);
+  padding: 0.7rem 2.2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ff9800;
+  margin-top: -30px;
+  margin-bottom: 30px;
+  border: 2px solid #ffe0b2;
+  letter-spacing: 1px;
+  transition: box-shadow 0.2s;
+}
+.open-bar:hover {
+  box-shadow: 0 4px 24px rgba(255, 167, 81, 0.18);
+}
+.open-icon {
+  font-size: 1.5rem;
+  color: #ff9800;
+}
+.open-text b {
+  color: #e65100;
+}
+@media (max-width: 767px) {
+  .open-bar { font-size: 1rem; padding: 0.5rem 1rem; }
+  .open-icon { font-size: 1.2rem; }
+  .open-bar .open-text.ms-4 { margin-left: 0 !important; display: block; margin-top: 0.5rem; }
+}
+.open-bar .open-phone {
+  color: #e65100;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.open-bar .open-phone:hover {
+  color: #ff9800;
+  text-decoration: underline;
+}
+
 /* Stile per i titoli */
 h2, h5 {
     font-weight: bold; /* Imposta il grassetto per i titoli */
@@ -22,4 +160,14 @@ p {
     color: #333; /* Colore grigio scuro */
     font-family: 'Arial', sans-serif; /* Font sans-serif moderno */
     line-height: 1.6; /* Interlinea più larga per migliorare la leggibilità */
+}
+
+/* Titoli e testo */
+h1, h2, h3, h5 {
+  font-family: 'Montserrat', 'Arial', sans-serif;
+  color: #222;
+}
+p, .lead {
+  color: #333;
+  font-family: 'Arial', sans-serif;
 }

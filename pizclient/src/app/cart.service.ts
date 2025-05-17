@@ -47,9 +47,10 @@ export class CartService {
   }
 
   clearCart() {
+    console.log('[DEBUG] clearCart chiamato!', new Error().stack);
     this.cart = [];
-  localStorage.removeItem('cart');
-  this.cartlength.next(0);
+    localStorage.removeItem('cart');
+    this.cartlength.next(0);
   }
 
   addToCart(pizza: any) {

@@ -18,17 +18,16 @@
             <div class="card">
                 <div class="row g-0">
                     <!-- Colonna Immagine -->
-                    <div class="col-md-4">
+                    <div class="col-md-4 d-flex align-items-center justify-content-center">
                         <img [src]="t.image" class="img-fluid rounded-start" alt="{{t.tname}}">
                     </div>
-
                     <!-- Colonna Dettagli -->
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{t.tname}}</h5>
-                            <p class="card-text text-muted">Prezzo: &#8364;{{t.price}}</p>
+                            <h5 class="card-title">{{t.tname}} <span class="badge">Sfizio</span></h5>
+                            <p class="card-text text-muted">Prezzo: €{{t.price}}</p>
                             <p class="card-text" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis;">{{t.description}}</p>
-                            <button type="button" class="btn btn-warning w-100" (click)="addToppingToCart(t)">
+                            <button type="button" class="btn btn-warning w-100 mt-2" (click)="addToppingToCart(t)">
                                 <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
                             </button>
                         </div>

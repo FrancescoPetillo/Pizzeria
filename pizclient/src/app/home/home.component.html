@@ -1,64 +1,74 @@
-<div class="container-fluid border border-1">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center">La nostra storia</h2>
-            <p class="small">Franvittore nasce da un'idea di due giovani studenti di Ingegneria Informatica appassionati di pizza e tecnologia.
-                Unendo le nostre competenze nel campo della cybersecurity e l’amore per la buona cucina, abbiamo creato una pizzeria online che fonde tradizione gastronomica e innovazione digitale.</p>
-            
-            <p class="small"> Con Franvittore vogliamo offrire un’esperienza semplice, sicura e gustosa, dove ogni ordine è trattato con la stessa cura con cui scriviamo il codice: con precisione, attenzione e passione.
-                 Dalla scelta degli ingredienti alla protezione dei tuoi dati, ogni dettaglio è pensato per garantirti solo il meglio.</p>
-    
-            <p class="small">Trova anche tu il momento perfetto per gustare la nostra deliziosa pizza, ordinando comodamente da casa.
-                 Con un semplice clic, puoi ricevere la Maradona direttamente sulla tua tavola, pronta per sorprenderti con il suo gusto unico. 
-                 Non perdere l’occasione di assaporare il meglio della tradizione e dell'innovazione, senza dover uscire.!</p>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franvittore - Pizzeria Online</title>
+    <!-- Aggiungi i link ai fogli di stile e agli script necessari qui -->
+</head>
+<body>
 
-    <br>
-
-    <div class="row">
-        <!-- Prima immagine a sinistra -->
-        <div class="col-md-5">
-            <img class="img-fluid" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsaltcitypizza.com%2Fwp-content%2Fuploads%2F2020%2F07%2Fpizza-ingredients.jpg&f=1&nofb=1&ipt=a92301734993196567c3e7b5f4cc44d9d35220ec8155c4f93561fadbd64b3f27">
-        </div>
-        <div class="col-md-7 pl">
-            <h5>Materie prime</h5>
-            <p class="small text-justify">Da Franvittore, la qualità viene prima di tutto. Utilizziamo esclusivamente ingredienti biologici, selezionati con cura da produttori locali e certificati. 
-                Ogni elemento, dalla farina al pomodoro, dalla mozzarella agli oli, è scelto per garantire freschezza, genuinità e un gusto autentico. Crediamo in una cucina trasparente e sana, 
-                dove ogni pizza racconta l'amore per le materie prime e il rispetto per chi le gusta.
-            </p>
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-        <!-- Seconda immagine a destra -->
-        <div class="col-md-7 pl">
-            <h5>I nostri chef</h5>
-            <p class="small text-justify float-end">Dietro ogni pizza c’è la passione e l’esperienza dei nostri pizzaioli napoletani, tutti formati nelle migliori scuole
-                 di cucina con master professionali nel settore gastronomico. Uniscono la tradizione partenopea alle tecniche moderne per offrirti un prodotto autentico, 
-                 curato nei minimi dettagli e sempre all’altezza delle aspettative. Ogni impasto, ogni condimento, ogni cottura nasce dalle mani di chi ha fatto dell’arte 
-                 della pizza una vera vocazione.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img class="img-fluid" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scattidigusto.it%2Fwp-content%2Fuploads%2F2017%2F03%2Fsammarco-eataly-pizzaiolo.jpg%3Fw%3D215%26h%3D136&f=1&nofb=1&ipt=e3c2d9803827a7658b98dbb58449be045a6f47535f038b3ff0fcb663356ff3f1">
-        </div>
-    </div>
-
-    <br>
-
-    <div class="row">
-        <!-- Terza immagine a sinistra -->
-        <div class="col-md-5">
-            <img class="img-fluid" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fblueprint.theblueground.com%2Fwp-content%2Fuploads%2F2019%2F06%2Fblueprint-blueground-food-delivery-chicago.1-.jpg&f=1&nofb=1&ipt=c7f4d2379a3740938078a35fbadd4bebacb28e43fbd3f75a8c15e1700a05a4e4">
-        </div>
-        <div class="col-md-7 pl">
-            <h5>Consegna in 15 minuti!</h5>
-            <p class="small text-justify float-end">Ci assicuriamo che la pizza venga consegnata in 15 minuti, in modo da gustarla a casa ancora
-                calda e fragrante... come se fosse appena sfornata!
-            </p>
-        </div>
-    </div>
+<!-- Hero Section -->
+<div class="hero-section d-flex flex-column align-items-center justify-content-center text-center">
+  <img src="assets/franvittore.jpg" alt="Logo Franvittore" class="hero-logo mb-3">
+  <h1 class="display-3 fw-bold mb-2">Franvittore</h1>
+  <h2 class="mb-4">La nostra storia</h2>
+  <p class="lead hero-desc mb-4">Due giovani ingegneri, una passione per la pizza e la cybersecurity.<br>
+    Tradizione e innovazione in ogni fetta!</p>
+  <a routerLink="/order" class="btn btn-lg btn-warning shadow-lg px-5 py-2">Ordina ora</a>
 </div>
+
+<!-- Barra orari apertura moderna + assistenza clienti -->
+<div class="open-bar d-flex align-items-center justify-content-center my-4 flex-wrap">
+  <i class="fa fa-clock-o open-icon me-2"></i>
+  <span class="open-text">Aperti dal <b>martedì</b> alla <b>domenica</b> &middot; <b>18:00 - 23:30</b></span>
+  <span class="open-text ms-4"><i class="fa fa-phone me-1"></i> <b>Assistenza clienti:</b> <a href="tel:0815115678" class="open-phone">081 511 5678</a></span>
+</div>
+
+<!-- Glass Cards Section -->
+<div class="container my-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="glass-card p-4 h-100 d-flex flex-column align-items-center text-center">
+        <img class="rounded shadow mb-3 card-img-top" src="assets/margherita.jpg" alt="Ingredienti" style="max-width: 100%; height: 180px; object-fit: cover;">
+        <h5 class="fw-bold mb-2">Materie prime</h5>
+        <p>Solo ingredienti biologici e locali, scelti con cura per garantire freschezza e genuinità. Ogni pizza racconta l'amore per la qualità.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-card p-4 h-100 d-flex flex-column align-items-center text-center">
+        <img class="rounded-circle shadow mb-3 card-img-top" src="https://www.scattidigusto.it/wp-content/uploads/2017/03/sammarco-eataly-pizzaiolo.jpg?w=215&h=136" alt="Chef" style="width: 180px; height: 180px; object-fit: cover;">
+        <h5 class="fw-bold mb-2">I nostri chef</h5>
+        <p>Pizzaioli napoletani con formazione professionale, passione e tecnica. Ogni impasto nasce da mani esperte e amore per la tradizione.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-card p-4 h-100 d-flex flex-column align-items-center text-center">
+        <img class="rounded shadow mb-3 card-img-top" src="assets/pizzafritta.jpg" alt="Consegna" style="max-width: 100%; height: 180px; object-fit: cover;">
+        <h5 class="fw-bold mb-2">Consegna in 15 minuti!</h5>
+        <p>Ricevi la tua pizza calda e fragrante a casa in soli 15 minuti. Gusto e velocità, come appena sfornata!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Storia Section -->
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="glass-card p-4 text-center">
+        <h3 class="fw-bold mb-3">La nostra missione</h3>
+        <p class="mb-2">Franvittore nasce da un'idea di due giovani studenti di Ingegneria Informatica appassionati di pizza e tecnologia.
+          Unendo le nostre competenze nel campo della cybersecurity e l’amore per la buona cucina, abbiamo creato una pizzeria online che fonde tradizione gastronomica e innovazione digitale.</p>
+        <p class="mb-2">Con Franvittore vogliamo offrire un’esperienza semplice, sicura e gustosa, dove ogni ordine è trattato con la stessa cura con cui scriviamo il codice: con precisione, attenzione e passione.
+          Dalla scelta degli ingredienti alla protezione dei tuoi dati, ogni dettaglio è pensato per garantirti solo il meglio.</p>
+        <p>Trova anche tu il momento perfetto per gustare la nostra deliziosa pizza, ordinando comodamente da casa. Con un semplice clic, puoi ricevere la Maradona direttamente sulla tua tavola, pronta per sorprenderti con il suo gusto unico. Non perdere l’occasione di assaporare il meglio della tradizione e dell'innovazione, senza dover uscire!</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Aggiungi eventuali script JavaScript qui -->
+
+</body>
+</html>

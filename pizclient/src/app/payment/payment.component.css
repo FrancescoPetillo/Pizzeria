@@ -1,4 +1,97 @@
-.container
-{
-    border-style:ridge;
+/*
+ * Modernizzazione form pagamento: card effetto vetro, input con icone, layout a due colonne per dati carta, stile realistico carta di credito, focus su UX.
+ */
+.payment-card {
+  max-width: 420px;
+  margin: 32px auto;
+  background: rgba(255,255,255,0.95);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px 0 rgba(255, 167, 81, 0.13);
+  padding: 2.5rem 2rem 2rem 2rem;
+  border: none;
+  position: relative;
+}
+.payment-card .form-label {
+  font-weight: 600;
+  color: #d35400;
+}
+.payment-card .form-control {
+  border-radius: 14px;
+  border: 1.5px solid #ffe259;
+  background: #fffbe6;
+  font-size: 1.1em;
+  box-shadow: 0 1px 4px rgba(255, 167, 81, 0.07);
+  margin-bottom: 8px;
+}
+.payment-card .form-control:focus {
+  border-color: #ffb347;
+  box-shadow: 0 0 0 2px #ffe25955;
+}
+.payment-card .input-group-text {
+  background: #ffe259;
+  border: none;
+  border-radius: 12px 0 0 12px;
+  color: #d35400;
+  font-size: 1.2em;
+}
+.payment-card .btn-success {
+  background: linear-gradient(90deg, #ffb347 0%, #ffe259 100%);
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(255, 167, 81, 0.10);
+  font-size: 1.2em;
+  margin-top: 10px;
+  transition: background 0.18s, box-shadow 0.18s;
+}
+.payment-card .btn-success:hover {
+  background: linear-gradient(90deg, #ffe259 0%, #ffb347 100%);
+  color: #d35400;
+  box-shadow: 0 4px 16px rgba(255, 167, 81, 0.18);
+}
+.creditcard-mock {
+  width: 100%;
+  height: 120px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffe259 60%, #ffb347 100%);
+  box-shadow: 0 2px 16px rgba(255, 167, 81, 0.13);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 18px 28px;
+  color: #fff;
+  font-family: 'Montserrat', 'Poppins', Arial, sans-serif;
+  position: relative;
+}
+.creditcard-mock .chip {
+  width: 38px;
+  height: 28px;
+  background: #fffbe6;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px #d3540033;
+}
+.creditcard-mock .cc-number {
+  font-size: 1.2em;
+  letter-spacing: 2px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.creditcard-mock .cc-name {
+  font-size: 1em;
+  opacity: 0.9;
+}
+.creditcard-mock .cc-exp {
+  font-size: 0.95em;
+  opacity: 0.8;
+  position: absolute;
+  right: 28px;
+  bottom: 18px;
+}
+@media (max-width: 600px) {
+  .payment-card { padding: 1.2rem 0.5rem; }
+  .creditcard-mock { padding: 10px 10px; height: 90px; }
 }

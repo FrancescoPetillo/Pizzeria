@@ -86,7 +86,8 @@ export class CartComponent implements OnInit {
   }
 
   paylo(): void {
-    this.router.navigateByUrl('/pay');  // Solo navigazione senza svuotare il carrello
+    // Naviga alla pagina di pagamento SENZA svuotare il carrello
+    this.router.navigateByUrl('/pay');
   }
 
   updateTotals(): void {

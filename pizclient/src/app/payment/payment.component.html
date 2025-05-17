@@ -1,4 +1,12 @@
-<form (ngSubmit)="onSubmit()" #paymentForm="ngForm" class="border p-4 bg-white shadow rounded" novalidate>
+<form (ngSubmit)="onSubmit()" #paymentForm="ngForm" class="payment-card" novalidate>
+  <!-- Mock carta di credito -->
+  <div class="creditcard-mock mb-4">
+    <div class="chip"></div>
+    <div class="cc-number">{{ formData.card ? (formData.card | slice:0:4) + ' •••• •••• ' + (formData.card | slice:-4) : '•••• •••• •••• ••••' }}</div>
+    <div class="cc-name">{{ formData.nome || 'NOME COGNOME' }}</div>
+    <div class="cc-exp">Scad. {{ (formData.expMonth || 'MM') + '/' + (formData.expYear || 'AA') }}</div>
+  </div>
+
   <!-- Nome completo -->
   <div class="mb-3">
     <label for="fullName" class="form-label">Nome completo</label>
@@ -20,11 +28,31 @@
     <div class="invalid-feedback d-block" *ngIf="submitted && !formData.indirizzo">Inserisci un indirizzo valido.</div>
   </div>
 
-  <!-- Carta -->
-  <div class="mb-3">
-    <label for="card" class="form-label">Numero Carta</label>
-    <input type="password" class="form-control" id="card" name="card" [(ngModel)]="formData.card" required pattern="\\d{16}" maxlength="16">
-    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.card">Inserisci un numero di carta valido (16 cifre).</div>
+  <!-- Dati carta: numero, scadenza, CVV -->
+  <div class="row g-2 mb-3">
+    <div class="col-12 col-md-6">
+      <label for="card" class="form-label">Numero Carta</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="fa fa-credit-card"></i></span>
+        <input type="password" class="form-control" id="card" name="card" [(ngModel)]="formData.card" required pattern="\d{16}" maxlength="16" placeholder="•••• •••• •••• ••••">
+      </div>
+      <div class="invalid-feedback d-block" *ngIf="submitted && !formData.card">Inserisci un numero di carta valido (16 cifre).</div>
+    </div>
+    <div class="col-4 col-md-2">
+      <label for="expMonth" class="form-label">Mese</label>
+      <input type="text" class="form-control" id="expMonth" name="expMonth" [(ngModel)]="formData.expMonth" required pattern="0[1-9]|1[0-2]" maxlength="2" placeholder="MM">
+      <div class="invalid-feedback d-block" *ngIf="submitted && !formData.expMonth">MM</div>
+    </div>
+    <div class="col-4 col-md-2">
+      <label for="expYear" class="form-label">Anno</label>
+      <input type="text" class="form-control" id="expYear" name="expYear" [(ngModel)]="formData.expYear" required pattern="\d{2}" maxlength="2" placeholder="AA">
+      <div class="invalid-feedback d-block" *ngIf="submitted && !formData.expYear">AA</div>
+    </div>
+    <div class="col-4 col-md-2">
+      <label for="cvv" class="form-label">CVV</label>
+      <input type="password" class="form-control" id="cvv" name="cvv" [(ngModel)]="formData.cvv" required pattern="\d{3}" maxlength="3" placeholder="CVV">
+      <div class="invalid-feedback d-block" *ngIf="submitted && !formData.cvv">CVV</div>
+    </div>
   </div>
 
   <!-- Bottone -->

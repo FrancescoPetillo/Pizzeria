@@ -1,22 +1,28 @@
 <div class="container-fluid container-pizza">
-  <!-- Titolo più grande -->
-  <h2 class="order-title fs-1" style="text-align: center;">Ordina la tua pizza!</h2>
-  <p class="order-subtitle fs-4" style="text-align: center;">Scegli tra una varietà di pizze, tutte preparate con ingredienti freschi e genuini. Clicca sulla pizza per aggiungerla al tuo ordine!</p>
-   
-  <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div class="col" *ngFor="let pizza of pizzas">
-      <div class="card h-100">
-        <img [src]="pizza.image" class="card-img-top" [alt]="pizza.name">
-        <div class="card-body">
-          <h5 class="card-title fs-3">{{pizza.name}}</h5>
-          <p class="card-text fs-5">{{pizza.description}}</p>
-          <p class="fs-4">€ {{pizza.price}}</p>
-          <button class="btn btn-warning fs-5 d-flex align-items-center gap-2"
+  <h2 class="order-title fs-1 text-center mb-2">Ordina la tua pizza!</h2>
+  <p class="order-subtitle fs-4 text-center mb-4">Scegli tra una varietà di pizze, tutte preparate con ingredienti freschi e genuini.<br>Scorri, clicca e lasciati tentare!</p>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col d-flex align-items-stretch" *ngFor="let pizza of pizzas">
+      <div class="pizza-card-modern card h-100 shadow-lg border-0 position-relative overflow-hidden">
+        <div class="pizza-badge position-absolute top-0 end-0 m-2" *ngIf="pizza.vegetarian">
+          <span class="badge bg-success fs-6">🌱 Veg</span>
+        </div>
+        <img [src]="pizza.image" class="pizza-img card-img-top mx-auto mt-3" [alt]="pizza.name">
+        <div class="card-body d-flex flex-column align-items-center text-center">
+          <h5 class="card-title fs-3 mb-1">{{pizza.name}} <span *ngIf="pizza.special" class="badge bg-warning text-dark ms-2">⭐</span></h5>
+          <p class="card-text fs-6 text-muted mb-2">{{pizza.description}}</p>
+          <div class="d-flex align-items-center justify-content-center gap-2 mb-2">
+            <span class="fs-4 fw-bold text-danger">€ {{pizza.price}}</span>
+            <span *ngIf="pizza.spicy" class="ms-2">🌶️</span>
+            <span *ngIf="pizza.popular" class="ms-2">🔥</span>
+          </div>
+          <button class="btn btn-warning fs-5 d-flex align-items-center gap-2 px-4 py-2 rounded-pill shadow-sm mt-auto"
                   (click)="addToCart(pizza)"
                   [disabled]="!pizza._id || isNaN(pizza.price) || +pizza.price <= 0">
             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
           </button>
         </div>
+        <div class="pizza-card-glow"></div>
       </div>
     </div>
   </div>

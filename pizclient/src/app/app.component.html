@@ -1,15 +1,16 @@
 <div class="container-fluid">
-  <nav class="navbar navbar-expand-lg bg-dark navbar-dark rounded">
+  <nav class="navbar navbar-expand-lg navbar-pizza shadow-lg py-3">
     <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2" routerLink="/home">
+        <img src="assets/PizzeriaLogo.jpg" alt="Logo Pizzeria" class="navbar-logo me-2">
+        <span class="brand-title">Franvittore</span>
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" routerLink="/home" routerLinkActive="nav-link active">Pizzeria
-        <img src=".\assets\PizzeriaLogo.png" alt="" width="89" height="69">
-      </a>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" routerLink="/order">Ordina la tua Pizza</a>
           </li>
@@ -17,30 +18,20 @@
             <a class="nav-link" routerLink="/build">Aggiungi uno Sfizio</a>
           </li>
         </ul>
+        <ul class="navbar-nav align-items-center gap-2">
+          <li class="nav-item">
+            <button type="button" class="btn btn-warning btn-cart d-flex align-items-center" routerLink="/cart">
+              <i class="fa fa-shopping-cart me-1"></i> Carrello
+              <span class="badge rounded-pill bg-light text-dark ms-2">{{count}}</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/login" class="btn btn-outline-light btn-login ms-2 px-4">Login</a>
+          </li>
+        </ul>
       </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button type="button" class="btn btn-warning btn-sm text-nowrap" routerLink="/cart">
-            <i class="fa fa-shopping-cart"></i> Carrello 
-            <span class="badge rounded-pill bg-light text-dark">{{count}}</span>
-          </button>
-        </li>
-        <li>
-          <a routerLink="/login" class="btn btn-primary ms-2">Login</a>
-        </li>
-      </ul>
     </div>
   </nav>
-
-  <!-- Sezione Assistenza visibile in ogni pagina -->
-  <div class="bg-info text-white text-center py-2">
-    <p class="mb-0">
-      <strong>Aperti</strong> dal martedì alla domenica | 
-      <strong>Pranzo:</strong> 12:00 - 16:00 &nbsp;&nbsp;&nbsp; 
-      <strong>Sera:</strong> 19:00 - 24:00 &nbsp;&nbsp;&nbsp; 
-      <strong>Assistenza clienti:</strong> 081 511 5678
-    </p>
-  </div>
 
   <!-- Contenuto dinamico -->
   <div>

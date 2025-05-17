@@ -20,14 +20,11 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password, name } = req.body;
     if (await User.findOne({ email })) {
-      // Risposta chiara per Angular
       return res.status(400).json({ message: 'Email già registrata' });
     }
-    // Hash della password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ email, password: hashedPassword, name });
-    //req.session.userId = user._id;
-    // Risposta JSON per Angular
+    // NON hashare qui, lascia che sia lo userSchema.pre('save') a farlo!
+    const user = new User({ email, password, name });
+    await user.save();
     res.status(200).json({ message: 'Registrazione avvenuta!' });
   } catch (err) {
     res.status(500).json({ message: 'Errore durante la registrazione' });
@@ -43,19 +40,21 @@ router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
-    if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(400).json({ message: 'Credenziali errate' });
+    console.log('Login tentativo per:', email, 'Utente trovato:', !!user);
+    if (!user) {
+      return res.status(400).json({ message: 'Credenziali errate (utente non trovato)' });
+    }
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    console.log('Password match:', passwordMatch);
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Credenziali errate (password)' });
     }
     req.session.userId = user._id;
     res.status(200).json({ message: 'Login effettuato!' });
   } catch (err) {
+    console.error('Errore login:', err);
     res.status(500).json({ message: 'Errore durante il login' });
   }
-});
-
-// LOGOUT
-router.get('/logout', (req, res) => {
-  req.session.destroy(() => res.redirect('/'));
 });
 
 // PROFILO

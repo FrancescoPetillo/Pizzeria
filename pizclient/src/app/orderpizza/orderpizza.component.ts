@@ -20,6 +20,7 @@ export class OrderpizzaComponent implements OnInit  {
 
   ngOnInit(): void {
     this.orderservice.getPizzas().subscribe((data) => {
+      console.log('Pizze caricate:', data);
       this.pizzas = data;
     });
     for (let i = 0; i < this.cartservice.cart.length; i++) {
@@ -37,6 +38,10 @@ export class OrderpizzaComponent implements OnInit  {
     this.cartservice.removeFromCart(pizza);
     this.cartservice.getTotal();
     this.flags[pizza.id] = !this.flags[pizza.id];
+  }
+
+  isNaN(value: any): boolean {
+    return isNaN(Number(value));
   }
 
 }

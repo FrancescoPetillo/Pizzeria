@@ -85,13 +85,12 @@ export class CartComponent implements OnInit {
     this.updateTotals();
   }
 
-paylo(): void {
-  this.router.navigateByUrl('/pay');  // Solo navigazione senza svuotare il carrello
-}
-
+  paylo(): void {
+    this.router.navigateByUrl('/pay');  // Solo navigazione senza svuotare il carrello
+  }
 
   updateTotals(): void {
-  this.total = this.cartservice.getTotal();
-  this.toppingtotal = this.cartservice.getToppingsTotal();
-}
+    this.total = this.cartservice.getTotal();
+    this.toppingtotal = this.cartservice.getToppingsTotal();
+  }
 }

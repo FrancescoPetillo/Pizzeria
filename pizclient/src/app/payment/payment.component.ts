@@ -73,8 +73,11 @@ export class PaymentComponent implements OnInit {
     const mappedProducts = this.cartService.cart
       .filter((p: any) => p._id && typeof p._id === 'string' && this.getSafePrice(p) > 0 && this.getSafeQty(p) > 0)
       .map((p: any) => ({
-        productId: p._id,
-        quantity: this.getSafeQty(p)
+        id: p._id,
+        name: p.name,
+        price: this.getSafePrice(p),
+        qty: this.getSafeQty(p),
+        image: p.image
       }));
     if (mappedProducts.length === 0) {
       alert('Il carrello è vuoto o contiene prodotti non validi.');
@@ -85,18 +88,10 @@ export class PaymentComponent implements OnInit {
       name: this.sanitizeString(this.formData.nome),
       email: this.formData.email.trim(),
       address: this.sanitizeString(this.formData.indirizzo),
-      products: mappedProducts,
-      totalAmount: this.cartService.cart.reduce((sum, p) => sum + (this.getSafePrice(p) * this.getSafeQty(p)), 0),
-      paymentMethod: this.formData.metodoPagamento,
+      prodotti: mappedProducts,
       cardLast4: this.formData.card.slice(-4)
     };
-    // Disabilita invio se totale incoerente
-    if (payload.totalAmount <= 0 || isNaN(payload.totalAmount)) {
-      alert('Totale ordine non valido.');
-      this.submitted = false;
-      return;
-    }
-    this.http.post('http://localhost:3000/api/orders', payload).subscribe({
+    this.http.post('http://localhost:3000/checkout', payload).subscribe({
       next: () => {
         this.success = true;
         this.submitted = false;

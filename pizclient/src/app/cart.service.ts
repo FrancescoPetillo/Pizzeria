@@ -32,9 +32,11 @@ export class CartService {
   }
 
   private isValidCartItem(item: any): boolean {
+    // Accetta sia _id che id, per compatibilità vecchi dati
+    const id = typeof item._id === 'string' && item._id.length > 5 ? item._id : (typeof item.id === 'string' && item.id.length > 0 ? item.id : null);
     return (
       item &&
-      typeof item._id === 'string' && item._id.length > 10 &&
+      id &&
       typeof item.price !== 'undefined' && !isNaN(parseFloat(item.price)) && parseFloat(item.price) >= 0 &&
       typeof item.qty === 'number' && item.qty > 0 && item.qty <= 10
     );

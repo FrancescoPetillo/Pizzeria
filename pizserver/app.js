@@ -6,10 +6,11 @@ var logger = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const mongoose = require('mongoose'); // Connessione a MongoDB
+const mongoose = require('mongoose');
 const pizzaRoutes = require('./routes/pizzaRoutes');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
+const authRoutes = require('./routes/auth');
 
 // Connessione a MongoDB
 const mongoURI = 'mongodb://franvittore1926:FrancescoVittorio1926.@127.0.0.1:27017/pizzeria?authSource=pizzeria';
@@ -17,8 +18,6 @@ const mongoURI = 'mongodb://franvittore1926:FrancescoVittorio1926.@127.0.0.1:270
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  //tls: true,  
-  //tlsCAFile: 'C:\\Users\\fpeti\\Desktop\\mongodb-certs\\certificato.pem'  // percorso al certificato CA
 }).then(() => {
   console.log('✅ Connesso a MongoDB con SSL/TLS');
 }).catch(err => {
@@ -28,10 +27,9 @@ mongoose.connect(mongoURI, {
 // Importazione delle rotte
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-const orderRoutes = require('./routes/orderRoutes'); // Importa le rotte per gli ordini
-const authRoutes = require('./routes/auth'); // << IMPORT QUI
+const orderRoutes = require('./routes/orderRoutes');
 
-var app = express(); // << CREA L'APP QUI
+var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +39,12 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cors());
+
+// CORS per Angular
+app.use(cors({
+  origin: 'http://localhost:4200',
+  credentials: true
+}));
 app.use(helmet());
 
 // Rate limit: max 5 richieste al minuto sulla rotta /checkout
@@ -59,14 +62,18 @@ app.use(session({
 }));
 
 // Rotte
-app.use('/auth', authRoutes); // << ORA QUI È CORRETTO
+app.use('/auth', authRoutes);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/orders', orderRoutes);  // Aggiungi le rotte per gli ordini
-app.use('/api/pizzas', pizzaRoutes); 
+app.use('/api/orders', orderRoutes);
+app.use('/api/pizzas', pizzaRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  // Rispondi in JSON se la richiesta arriva da Angular, altrimenti continua con l'handler errori classico
+  if (req.headers.accept && req.headers.accept.indexOf('application/json') > -1) {
+    return res.status(404).json({ message: 'Not found' });
+  }
   next(createError(404));
 });
 
@@ -74,8 +81,14 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.status(err.status || 500);
-  res.render('error');
+
+  // Se la richiesta arriva da Angular (accetta JSON), rispondi con JSON!
+  if (req.headers.accept && req.headers.accept.indexOf('application/json') > -1) {
+    res.status(err.status || 500).json({ message: err.message || 'Errore server' });
+  } else {
+    res.status(err.status || 500);
+    res.render('error');
+  }
 });
 
 module.exports = app;

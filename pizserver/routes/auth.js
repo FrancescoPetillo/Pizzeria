@@ -3,10 +3,11 @@ const router = express.Router();
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
+const bcrypt = require('bcrypt');
 
 // Middleware per rotte protette
 function requireAuth(req, res, next) {
-  if (!req.session.userId) return res.redirect('/auth/login');
+  if (!req.session.userId) return res.status(401).json({ error: 'Non autenticato' });
   next();
 }
 
@@ -14,32 +15,47 @@ function requireAuth(req, res, next) {
 router.get('/register', (req, res) => {
   res.render('register');
 });
+
 router.post('/register', async (req, res) => {
-  const { email, password, name } = req.body;
-  if (await User.findOne({ email })) return res.render('register', { error: 'Email già registrata' });
-  const user = await User.create({ email, password, name });
-  req.session.userId = user._id;
-  res.redirect('/auth/profile');
+  try {
+    const { email, password, name } = req.body;
+    if (await User.findOne({ email })) {
+      // Risposta chiara per Angular
+      return res.status(400).json({ message: 'Email già registrata' });
+    }
+    // Hash della password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await User.create({ email, password: hashedPassword, name });
+    //req.session.userId = user._id;
+    // Risposta JSON per Angular
+    res.status(200).json({ message: 'Registrazione avvenuta!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Errore durante la registrazione' });
+  }
 });
 
 // LOGIN
 router.get('/login', (req, res) => {
   res.render('login');
 });
+
 router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email });
-  if (!user || !(await user.comparePassword(password)))
-    return res.render('login', { error: 'Credenziali errate' });
-  req.session.userId = user._id;
-  res.redirect('/auth/profile');
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user || !(await bcrypt.compare(password, user.password))) {
+      return res.status(400).json({ message: 'Credenziali errate' });
+    }
+    req.session.userId = user._id;
+    res.status(200).json({ message: 'Login effettuato!' });
+  } catch (err) {
+    res.status(500).json({ message: 'Errore durante il login' });
+  }
 });
 
 // LOGOUT
 router.get('/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
-  });
+  req.session.destroy(() => res.redirect('/'));
 });
 
 // PROFILO
@@ -47,6 +63,7 @@ router.get('/profile', requireAuth, async (req, res) => {
   const user = await User.findById(req.session.userId).select('-password');
   res.render('profile', { user });
 });
+
 router.post('/profile', requireAuth, async (req, res) => {
   const { name } = req.body;
   await User.findByIdAndUpdate(req.session.userId, { name });
@@ -57,6 +74,7 @@ router.post('/profile', requireAuth, async (req, res) => {
 router.get('/forgot', (req, res) => {
   res.render('forgot');
 });
+
 router.post('/forgot', async (req, res) => {
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.render('forgot', { error: 'Email non trovata' });
@@ -91,6 +109,7 @@ router.get('/reset/:token', async (req, res) => {
   if (!user) return res.render('forgot', { error: 'Token non valido o scaduto' });
   res.render('reset', { token: req.params.token });
 });
+
 router.post('/reset/:token', async (req, res) => {
   const user = await User.findOne({
     resetPasswordToken: req.params.token,
@@ -98,7 +117,8 @@ router.post('/reset/:token', async (req, res) => {
   });
   if (!user) return res.render('forgot', { error: 'Token non valido o scaduto' });
 
-  user.password = req.body.password;
+  // Hash nuova password
+  user.password = await bcrypt.hash(req.body.password, 10);
   user.resetPasswordToken = undefined;
   user.resetPasswordExpires = undefined;
   await user.save();

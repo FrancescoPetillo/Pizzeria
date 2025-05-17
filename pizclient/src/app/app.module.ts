@@ -10,6 +10,8 @@ import { CartComponent } from './cart/cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { FormsModule } from '@angular/forms';
     BuildurpizzaComponent,
     CartComponent,
     PaymentComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

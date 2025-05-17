@@ -1,17 +1,22 @@
 extends layout
 
 block content
-  h1 Login
-  if error
-    p(style="color:red")= error
-  form(method="post")
-    label Email:
-    input(type="email", name="email", required)
-    br
-    label Password:
-    input(type="password", name="password", required)
-    br
-    button(type="submit") Login
-  a(href="/auth/register") Registrati
-  br
-  a(href="/auth/forgot") Password dimenticata?
+  .row.justify-content-center
+    .col-md-4
+      .card.shadow
+        .card-body
+          h2.card-title.text-center.mb-4 Login
+          if error
+            .alert.alert-danger= error
+          form(method="post")
+            .mb-3
+              label.form-label(for="email") Email
+              input.form-control(type="email", name="email", id="email", required, autofocus)
+            .mb-3
+              label.form-label(for="password") Password
+              input.form-control(type="password", name="password", id="password", required)
+            button.btn.btn-primary.w-100(type="submit") Accedi
+          .mt-3.text-center
+            a(href="/auth/register") Non hai un account? Registrati
+            br
+            a(href="/auth/forgot") Password dimenticata?

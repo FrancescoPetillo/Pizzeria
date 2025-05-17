@@ -2,8 +2,8 @@
   <!-- Nome completo -->
   <div class="mb-3">
     <label for="fullName" class="form-label">Nome completo</label>
-    <input type="text" class="form-control" id="fullName" name="name" [(ngModel)]="formData.name" required minlength="3">
-    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.name">Inserisci un nome valido.</div>
+    <input type="text" class="form-control" id="fullName" name="nome" [(ngModel)]="formData.nome" required minlength="3">
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.nome">Inserisci un nome valido.</div>
   </div>
 
   <!-- Email -->
@@ -16,8 +16,8 @@
   <!-- Indirizzo -->
   <div class="mb-3">
     <label for="address" class="form-label">Indirizzo di spedizione</label>
-    <input type="text" class="form-control" id="address" name="address" [(ngModel)]="formData.address" required>
-    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.address">Inserisci un indirizzo valido.</div>
+    <input type="text" class="form-control" id="address" name="indirizzo" [(ngModel)]="formData.indirizzo" required>
+    <div class="invalid-feedback d-block" *ngIf="submitted && !formData.indirizzo">Inserisci un indirizzo valido.</div>
   </div>
 
   <!-- Carta -->
@@ -34,6 +34,6 @@
 <!-- Messaggio di successo -->
 <div *ngIf="success" class="alert alert-success mt-3 fw-bold fs-5">
   ✅ Pagamento completato con successo!<br>
-  📦 Il tuo ordine sarà consegnato <strong>{{ formData.address }}</strong> entro <strong>15 minuti</strong>.<br>
+  📦 Il tuo ordine sarà consegnato <strong>{{ formData.indirizzo }}</strong> entro <strong>15 minuti</strong>.<br>
   🍕 Grazie per aver ordinato da noi!
 </div>

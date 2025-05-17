@@ -1,3 +1,4 @@
+console.log('BODY:', req.body);
 const Order = require('../models/order');
 const Product = require('../models/product');  // Assumendo che tu abbia un modello per i prodotti
 
@@ -16,16 +17,23 @@ const createOrder = async (req, res) => {
     // Calcola il totale dell'ordine (qui per semplicità lo facciamo come prezzo del prodotto)
     const totalAmount = product.price;
 
+    // Prendi solo le ultime 4 cifre della carta
+    const cardLast4 = card ? card.slice(-4) : '';
+
     // Crea un nuovo ordine
     const order = new Order({
-      userId: req.user._id,  // Assumendo che l'utente sia autenticato
+      userId: req.user._id,
+      name,
+      email,
+      address,
       products: [{
         productId: product._id,
         quantity: 1
       }],
       totalAmount: totalAmount,
       paymentMethod: 'simulato',
-      status: 'pending'
+      status: 'pending',
+      cardLast4
     });
 
     // Salva l'ordine nel database

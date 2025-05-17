@@ -1,18 +1,23 @@
 const express = require('express');
-const Order = require('../models/order'); // Modello per gli ordini
+const Order = require('../models/Order'); // Usa la O maiuscola!
 const router = express.Router();
 
 // Crea un nuovo ordine
 router.post('/', async (req, res) => {
   try {
-    const { cliente, pizze, totale, indirizzo, stato } = req.body;
+    const { nome, email, indirizzo, prodotti, totale, metodoPagamento, card } = req.body;
+
+    // Prendi solo le ultime 4 cifre della carta, se presente
+    const cardLast4 = card ? card.slice(-4) : '';
 
     const nuovoOrdine = new Order({
-      cliente,
-      pizze,
-      totale,
+      nome,
+      email,
       indirizzo,
-      stato,
+      prodotti,
+      totale,
+      metodoPagamento,
+      cardLast4,
       dataCreazione: new Date()
     });
 

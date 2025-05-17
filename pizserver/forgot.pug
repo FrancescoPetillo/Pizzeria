@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1 Recupero password
+  if error
+    p(style="color:red")= error
+  if message
+    p(style="color:green")= message
+  form(method="post")
+    label Email:
+    input(type="email", name="email", required)
+    button(type="submit") Invia link
+  a(href="/auth/login") Torna al login

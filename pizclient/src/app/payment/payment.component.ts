@@ -9,11 +9,13 @@ import { CartService } from '../cart.service';
 })
 export class PaymentComponent implements OnInit {
   formData = {
-    name: '',
+    nome: '',
     email: '',
-    address: '',
+    indirizzo: '',
     card: '',
-    prodotti: []
+    prodotti: [],
+    totale: 0,
+    metodoPagamento: 'simulato'
   };
 
   submitted = false;
@@ -22,28 +24,28 @@ export class PaymentComponent implements OnInit {
   constructor(private http: HttpClient, private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.syncCartFromLocalStorage(); // Sincronizza il carrello
+    this.cartService.syncCartFromLocalStorage();
     this.formData.prodotti = this.cartService.cart;
+    this.formData.totale = this.cartService.cart.reduce((sum, p) => sum + (p.prezzo * p.quantita), 0);
   }
 
   onSubmit() {
-  this.submitted = true;
-  this.formData.prodotti = this.cartService.cart;
+    this.submitted = true;
+    this.formData.prodotti = this.cartService.cart;
+    this.formData.totale = this.cartService.cart.reduce((sum, p) => sum + (p.prezzo * p.quantita), 0);
 
-  if (this.formData.name && this.formData.email && this.formData.address && this.formData.card) {
-    this.http.post('http://localhost:3000/checkout', this.formData).subscribe({
-      next: () => {
-        this.success = true;
-        this.submitted = false;
-
-        // SVUOTARE IL CARRELLO SOLO DOPO PAGAMENTO RIUSCITO
-        this.cartService.clearCart();  // A questo punto, il carrello verrà svuotato
-        this.formData = { name: '', email: '', address: '', card: '', prodotti: [] };
-      },
-      error: () => {
-        alert('❌ Errore durante il pagamento. Riprova più tardi.');
-      }
-    });
+    if (this.formData.nome && this.formData.email && this.formData.indirizzo && this.formData.card) {
+      this.http.post('http://localhost:3000/api/orders', this.formData).subscribe({
+        next: () => {
+          this.success = true;
+          this.submitted = false;
+          this.cartService.clearCart();
+          this.formData = { nome: '', email: '', indirizzo: '', card: '', prodotti: [], totale: 0, metodoPagamento: 'simulato' };
+        },
+        error: () => {
+          alert('❌ Errore durante il pagamento. Riprova più tardi.');
+        }
+      });
+    }
   }
-}
 }

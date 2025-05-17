@@ -6,6 +6,8 @@ import { BuildurpizzaComponent } from './buildurpizza/buildurpizza.component';
 import { CartComponent } from './cart/cart.component';
 import { PaymentComponent } from './payment/payment.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component'; // <--- IMPORTA IL COMPONENTE REGISTRAZIONE
 
 
 const routes: Routes = [
@@ -14,7 +16,9 @@ const routes: Routes = [
     { path: 'build', component: BuildurpizzaComponent },
     { path: 'cart', component: CartComponent },
     { path: 'pay', component: PaymentComponent },
-    { path: '', redirectTo: '/home', pathMatch: "full" },
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent }, // <--- AGGIUNGI QUESTA LINEA
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: PagenotfoundComponent }
 
 ];

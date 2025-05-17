@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  .row.justify-content-center
+    .col-md-6
+      .card.shadow-lg.mt-5
+        .card-header.bg-danger.text-white
+          h2.mb-0.text-center Il tuo profilo
+        .card-body
+          .mb-4.text-center
+            img(src="https://img.icons8.com/doodle/96/000000/pizza--v1.png" alt="Avatar" class="rounded-circle mb-2")
+            h4.mt-2 Benvenuto, #{user.name || 'Utente'}!
+          dl.row
+            dt.col-sm-4 Nome:
+            dd.col-sm-8 #{user.name}
+            dt.col-sm-4 Email:
+            dd.col-sm-8 #{user.email}
+          hr
+          h5 Modifica nome
+          form(method="post")
+            .input-group.mb-3
+              input.form-control(type="text", name="name", value=user.name, required)
+              button.btn.btn-danger(type="submit") Aggiorna
+          .text-end
+            a.btn.btn-outline-danger(href="/auth/logout") Logout

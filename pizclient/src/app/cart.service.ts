@@ -51,7 +51,7 @@ export class CartService {
   }
 
   addToCart(pizza: any) {
-    if (!pizza || typeof pizza._id !== 'string' || isNaN(parseFloat(pizza.price)) || parseFloat(pizza.price) < 0) {
+    if (!this.isValidCartItem({ ...pizza, _id: pizza._id, price: pizza.price, qty: 1 })) {
       return;
     }
     const found = this.cart.find(item => item._id === pizza._id && !item.isTopping);
@@ -135,5 +135,14 @@ export class CartService {
 
   getToppingsTotal() {
     return this.cart.reduce((acc, item) => item.isTopping ? acc + (item.qty * parseFloat(item.price)) : acc, 0);
+  }
+
+  // Utility per feedback UX
+  isCartEmpty(): boolean {
+    return this.cart.length === 0;
+  }
+
+  hasInvalidItems(): boolean {
+    return !this.cart.every(this.isValidCartItem);
   }
 }

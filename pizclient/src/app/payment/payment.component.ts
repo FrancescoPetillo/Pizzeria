@@ -24,9 +24,17 @@ export class PaymentComponent implements OnInit {
   constructor(private http: HttpClient, private cartService: CartService) {}
 
   ngOnInit(): void {
+    this.syncFormWithCart();
+  }
+
+  syncFormWithCart() {
     this.cartService.syncCartFromLocalStorage();
     this.formData.prodotti = this.cartService.cart;
-    this.formData.totale = this.cartService.cart.reduce((sum, p) => sum + (this.getSafePrice(p) * this.getSafeQty(p)), 0);
+    this.formData.totale = this.getCartTotal();
+  }
+
+  getCartTotal(): number {
+    return this.cartService.cart.reduce((sum, p) => sum + (this.getSafePrice(p) * this.getSafeQty(p)), 0);
   }
 
   getSafePrice(p: any): number {
@@ -47,8 +55,10 @@ export class PaymentComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.submitted) return; // Previene submit multipli
+    if (this.submitted) return;
     this.submitted = true;
+    this.success = false;
+    this.syncFormWithCart(); // Aggiorna dati prima di inviare
     // Validazione lato client avanzata
     const emailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(this.formData.email);
     const nameValid = this.sanitizeString(this.formData.nome).length >= 3;
@@ -91,6 +101,10 @@ export class PaymentComponent implements OnInit {
         this.success = true;
         this.submitted = false;
         this.cartService.clearCart();
+        this.syncFormWithCart();
+        // Reset anche il form HTML se presente
+        const formElem = document.querySelector('form');
+        if (formElem) (formElem as HTMLFormElement).reset();
         this.formData = { nome: '', email: '', indirizzo: '', card: '', prodotti: [], totale: 0, metodoPagamento: 'simulato' };
       },
       error: (err) => {

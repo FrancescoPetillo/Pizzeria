@@ -6,12 +6,14 @@
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col" *ngFor="let pizza of pizzas">
       <div class="card h-100">
-        <img [src]="pizza.image" class="card-img-top" [alt]="pizza.name">
+        <img [src]="pizza.image" class="card-img-top" [alt]="pizza.name | escapeHtml">
         <div class="card-body">
-          <h5 class="card-title fs-3">{{pizza.name}}</h5>
-          <p class="card-text fs-5">{{pizza.description}}</p>
+          <h5 class="card-title fs-3">{{pizza.name | escapeHtml}}</h5>
+          <p class="card-text fs-5">{{pizza.description | escapeHtml}}</p>
           <p class="fs-4">€ {{pizza.price}}</p>
-          <button class="btn btn-warning fs-5 d-flex align-items-center gap-2" (click)="addToCart(pizza)">
+          <button class="btn btn-warning fs-5 d-flex align-items-center gap-2"
+                  (click)="addToCart(pizza)"
+                  [disabled]="!pizza._id || isNaN(pizza.price) || pizza.price <= 0">
             <i class="fa fa-shopping-cart"></i> Aggiungi al carrello
           </button>
         </div>

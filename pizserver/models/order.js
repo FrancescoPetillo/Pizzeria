@@ -1,20 +1,23 @@
 const mongoose = require('mongoose');
 
-// Definiamo il modello per l'ordine
 const orderSchema = new mongoose.Schema({
-  nome: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: false },
+  name: { type: String, required: true },
   email: { type: String, required: true },
-  indirizzo: { type: String, required: true },
-  prodotti: [
+  address: { type: String, required: true },
+  products: [
     {
-      prodottoId: { type: mongoose.Schema.Types.ObjectId, ref: 'Prodotto', required: true },
-      quantita: { type: Number, required: true }
+      productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+      quantity: { type: Number, required: true }
     }
   ],
-  totale: { type: Number, required: true },
-  metodoPagamento: { type: String, required: true },
+  totalAmount: { type: Number, required: true },
+  paymentMethod: { type: String, required: true },
   cardLast4: { type: String, required: true },
-  dataCreazione: { type: Date, default: Date.now }
+  status: { type: String, enum: ['pending', 'paid', 'shipped', 'delivered'], default: 'pending' },
+  createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('Order', orderSchema);
+
+module.exports = Order;

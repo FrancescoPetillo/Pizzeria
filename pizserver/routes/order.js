@@ -1,28 +1,25 @@
 console.log('BODY:', req.body);
 const Order = require('../models/order');
-const Product = require('../models/product');  // Assumendo che tu abbia un modello per i prodotti
+const Product = require('../models/product');
 
 // Funzione per creare un ordine
 const createOrder = async (req, res) => {
   const { name, email, address, productId, card } = req.body;
 
   try {
-    // Trova il prodotto dal database
+    // Trova il prodotto
     const product = await Product.findById(productId);
 
     if (!product) {
-      return res.status(400).json({ message: 'Prodotto non trovato!' });
+      return res.status(400).json({ message: 'Product not found!' });
     }
 
-    // Calcola il totale dell'ordine (qui per semplicità lo facciamo come prezzo del prodotto)
-    const totalAmount = product.price;
+    const totalAmount = product.price; // Assicurati che il campo sia 'prezzo' in Prodotto
+    const cardLast4 = card ? card.slice(-4) : ''; // Ultime 4 cifre della carta
 
-    // Prendi solo le ultime 4 cifre della carta
-    const cardLast4 = card ? card.slice(-4) : '';
-
-    // Crea un nuovo ordine
+    // Crea nuovo ordine
     const order = new Order({
-      userId: req.user._id,
+      userId: req.user ? req.user._id : undefined, // undefined is fine if not authenticated
       name,
       email,
       address,
@@ -30,20 +27,18 @@ const createOrder = async (req, res) => {
         productId: product._id,
         quantity: 1
       }],
-      totalAmount: totalAmount,
-      paymentMethod: 'simulato',
+      totalAmount,
+      paymentMethod: 'simulated',
       status: 'pending',
       cardLast4
     });
 
-    // Salva l'ordine nel database
     await order.save();
-    
-    // Restituisci una risposta positiva
-    res.status(201).json({ message: 'Ordine creato con successo', order });
+
+    res.status(201).json({ message: 'Order created successfully', order });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Errore nella creazione dell\'ordine' });
+    res.status(500).json({ message: 'Error creating order' });
   }
 };
 

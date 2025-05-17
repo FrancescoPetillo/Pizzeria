@@ -9,7 +9,6 @@ const rateLimit = require('express-rate-limit');
 const mongoose = require('mongoose');
 const pizzaRoutes = require('./routes/pizzaRoutes');
 
-
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const authRoutes = require('./routes/auth');
@@ -17,7 +16,6 @@ const authRoutes = require('./routes/auth');
 // Connessione a MongoDB
 const mongoURI = 'mongodb://franvittore1926:FrancescoVittorio1926.@127.0.0.1:27017/pizzeria?authSource=pizzeria';
 
-recupero-login
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -74,7 +72,7 @@ app.use('/users', usersRouter);
 app.use('/api/orders', orderRoutes);
 app.use('/api/pizzas', pizzaRoutes);
 
-recupero-login
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

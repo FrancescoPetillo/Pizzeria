@@ -10,12 +10,16 @@ const mongoose = require('mongoose'); // Connessione a MongoDB
 const pizzaRoutes = require('./routes/pizzaRoutes'); 
 
 // Connessione a MongoDB
-const mongoURI = 'mongodb://localhost:27017/pizzeria'; // Modifica con il tuo database
+const mongoURI = 'mongodb://franvittore1926:FrancescoVittorio1926.@127.0.0.1:27017/pizzeria?authSource=pizzeria';
+
+
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  //tls: true,  
+  //tlsCAFile: 'C:\\Users\\fpeti\\Desktop\\mongodb-certs\\certificato.pem'  // percorso al certificato CA
 }).then(() => {
-  console.log('✅ Connesso a MongoDB');
+  console.log('✅ Connesso a MongoDB con SSL/TLS');
 }).catch(err => {
   console.error('❌ Errore di connessione a MongoDB:', err);
 });

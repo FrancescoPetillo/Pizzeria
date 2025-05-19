@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center">Pizzeria Franvittore</h1>
 
 ## 📝 Table of Contents
@@ -24,3 +25,19 @@ order pizzas.
 Francesco Petillo
 Vittorio Basile
 
+=======
+<h1 align="center">Pizzeria Franvittore | MEAN Web App</h1>
+
+<p> This is a pizza ordering web application that is built with the MEAN stack, which consists of MongoDB, Express, Angular, and Node.js.</p>
+
+Table of Contents
+About
+Screenshots
+Authors
+🧐 About
+Pizzeria Franvittore is a Software Application created to order pizzas.
+Home page provides an overview of the organization.
+Users can choose from the existing menu and order pizzas.
+Users can also order tapas like crocchè, frittatina, french fries ecc...
+Shopping Cart page provides an overview of the order.
+>>>>>>> ec44428 (Prototipo testato, 0 fail, presentazione)

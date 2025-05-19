@@ -1,0 +1,127 @@
+[33mcommit 60120d0265f980eb1a6ec06dbe4cb72340c67647[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 8d0517b 1f03b54
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Mon May 19 16:45:01 2025 +0200
+
+    Merge branch 'master' of https://github.com/FrancescoPetillo/Pizzeria
+
+[33mcommit 8d0517bcfbb29b76da1284d7ea8f99feb9188820[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Mon May 19 16:36:09 2025 +0200
+
+    Prototipo testato, 0 fail
+
+[33mcommit 1f03b54bce7f15a54a2faad81e1bce08eb23b91a[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 21:54:32 2025 +0200
+
+    Update README.md
+
+[33mcommit 9f30ec3c9695fb7881189013a9f2c327c2559249[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 21:53:42 2025 +0200
+
+    Update README.md
+
+[33mcommit 5ff7576c35b3041b6cd3b951e6c8d811e7a3e047[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 21:52:44 2025 +0200
+
+    Update README.md
+
+[33mcommit 9099f57cad467f26bd4ee6be4bd43d34cdebcaac[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 21:50:59 2025 +0200
+
+    Update README.md
+
+[33mcommit 9a4fcd66e800eb6a4bc5102d63f81eb574eb8353[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 21:43:18 2025 +0200
+
+    Prototipo 2.0, correzione bug carrello, sicurezza implementata
+
+[33mcommit 79e4ed40d09d9400c4245e322b683682bbe7ebb2[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 19:33:57 2025 +0200
+
+    Prototipo
+
+[33mcommit 8034534bbdf1b223d66969dab35b14b72d6e16a0[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 18:43:38 2025 +0200
+
+    Sicurezza aggiornamento
+
+[33mcommit d4d789dd49836c862de2557217600f21c2fc9850[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 18:42:01 2025 +0200
+
+    Sicurezza aggiornamento
+
+[33mcommit 767d6158f4300ed50a2d18825facba9b1f99e4e2[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 17:06:22 2025 +0200
+
+    Modifica2
+
+[33mcommit ad37da26c6f2a7c04f1dc550aababc9d18960063[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 16:30:39 2025 +0200
+
+    Modifica backend
+
+[33mcommit 3da24e6c184663a0ef10f15333f426bf6eb8a57b[m
+Merge: b09dcb5 710649e
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 16:05:42 2025 +0200
+
+    Merge branch 'recupero-login'
+
+[33mcommit 710649eb4e39b64ec3e75b944bcce7d8a09cdeb5[m[33m ([m[1;32mrecupero-login[m[33m)[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 15:33:23 2025 +0200
+
+    Aggiunti componenti login e register, aggiornamenti routing e backend
+
+[33mcommit 44e2095d930cc8e85365db09f422e25f4f4597dd[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 13:06:11 2025 +0200
+
+    Sesto commit
+
+[33mcommit f87945406fc73a06d7c2d62032507a92c907e455[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sat May 17 12:33:30 2025 +0200
+
+    Aggiornato mongod.conf: SSL/TLS
+
+[33mcommit b09dcb5995888753e28e0c969d721ad1bd2169ae[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Wed May 14 11:21:45 2025 +0200
+
+    Configurata connessione MongoDB Atlas e frontend Angular statico
+
+[33mcommit c36949b6270730f03cf0e702269457a51e35f00f[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Tue May 13 10:20:09 2025 +0200
+
+    Quarto commit
+
+[33mcommit fd8a15d89f520118e4b8b1554471175215e84233[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Sun May 11 21:19:08 2025 +0200
+
+    Terzo commit: stile, sfizio e carrelli funzionanti
+
+[33mcommit a91e830a7a2066930b1a9d2b0081c53a0538099e[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Fri May 9 11:57:54 2025 +0200
+
+    Secondo commit (primo checkout)
+
+[33mcommit 6e76d0dc5f6cbc8369e169bf20e33f4b5151e9cc[m
+Author: Francesco <165157246+FrancescoPetillo@users.noreply.github.com>
+Date:   Wed May 7 20:10:40 2025 +0200
+
+    Primo commit del progetto

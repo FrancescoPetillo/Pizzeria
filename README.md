@@ -1,4 +1,4 @@
-<h1 align="center">Pizzeria Sanvittore</h1>
+<h1 align="center">Pizzeria Franvittore</h1>
 
 ## 📝 Table of Contents
 
